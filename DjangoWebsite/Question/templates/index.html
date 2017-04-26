@@ -11,6 +11,9 @@
         <meta name="keywords" content="Django, Python, UG, Uniwersytet Gdański, MFI, Wydział Matematyki fizyki i informatyki, I have no idea what i'm doing'">
         <meta name="author" content="Maciej Kitowski, grupa 1">
     </head>
+    <body>
+
+    </body>
 </html>
 
 
@@ -24,7 +27,7 @@
 
 <h1>Articles</h1>
 <ul>
-{% for article in object_list %}
+{% for article in latest_questions %}
     <li>{{ article.title }}</li>
 {% empty %}
     <li>No articles yet.</li>
