@@ -12,35 +12,46 @@
         <meta name="author" content="Maciej Kitowski, grupa 1">
     </head>
     <body>
+        <div class="header">
+            <h2>Header</h2>
+        </div>
+        <hr>
+        <div class="content">
+            <div class="questionContainer">
+                <table>
+                    {% for question in latest_questions %}
+                        <tr>
+                            <th class="date"> {{ question.askDate|date:'Y-m-d H:i' }} </th>
+                            <th class="votes"> {{ question.votes }} </th>
+                            <th class="views"> {{ question.views }} </th>
+                            <th class="question"> {{ question.title }} <th>
+                        </tr>
+                    {% empty %}
+                        <tr><th>Nobody asked a question</th></tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% if is_paginated %}
+                <hr>
+                <div class="pageNumber">
+                    <!-- Display active page number -->
+                    <!-- Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} -->
 
+                    <!-- Display next page link -->
+                    <!-- {% if page_obj.has_next %}
+                        <a href="./?page={{ page_obj.next_page_number }}">Next page</a>
+                    {% endif %} -->
+
+                    <!-- Display previous page link -->
+                    <!--{% if page_obj.has_previous %}
+                        <a href="./?page={{ page_obj.previous_page_number }}">Previous page</a>
+                    {% endif %} -->
+                </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div class="footer">
+            <h2>Footer</h2>
+        </div>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<h1>Articles</h1>
-<ul>
-{% for article in latest_questions %}
-    <li>{{ article.title }}</li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
-
-{% if is_paginated %}
-    <hr>
-    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="./?page={{ page_obj.next_page_number }}">starsze</a>
-    {% endif %}
-    {% if page_obj.has_previous %}
-        <a href="./?page={{ page_obj.previous_page_number }}">nowsze</a>
-    {% endif %}
-{% endif %}

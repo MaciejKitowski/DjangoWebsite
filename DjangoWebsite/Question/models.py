@@ -17,7 +17,7 @@ class Question(models.Model):
     askDate = models.DateTimeField('Ask Date', auto_now_add=True)
     content = models.TextField('Content')
     views = models.PositiveIntegerField('Views', default=0)
-    rate = models.IntegerField('Rates', default=0)
+    votes = models.IntegerField('Votes', default=0)
     tags = models.ManyToManyField(Category, verbose_name = 'Tags')
 
     class Meta:
