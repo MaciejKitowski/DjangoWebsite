@@ -52,13 +52,19 @@
                 {% endfor %}
             </table>
             {% if is_paginated %}
-                <div id="pageNumbers">
+                <div id="pageNumbers"> 
                     {% if page_obj.has_previous %}
-                        <a href="./{{ page_obj.previous_page_number }}">Previous page</a> |
+                        <a href="./{{ page_obj.previous_page_number }}">Previous page</a>
                     {% endif %}
+
                     {% for pageNumber in page_obj.paginator.page_range %}
-                        {{ pageNumber }} |
+                        {% if pageNumber == page_obj.number %}
+                            <div class="currentPage">{{ pageNumber }}</div>
+                        {% else %}
+                            <div class="page">{{ pageNumber }}</div>
+                        {% endif %}
                     {% endfor %}
+                    
                     {% if page_obj.has_next %}
                         <a href="./{{ page_obj.next_page_number }}">Next page</a>
                     {% endif %}

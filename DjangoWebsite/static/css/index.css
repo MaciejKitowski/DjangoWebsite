@@ -82,6 +82,32 @@ body {
     background-color: pink;
 }
 
+#pageNumbers {
+    background-color: lightgreen;
+    text-align: center;
+    padding: 3px 9px 3px 9px;
+    margin: 2px;
+}
+
+#pageNumbers .page {
+    display: inline-block;
+    padding: 3px 9px 3px 9px;
+    margin: 2px;
+}
+
+#pageNumbers .page:hover {
+    background-color: pink;
+}
+
+#pageNumbers .currentPage {
+    display: inline-block;
+    padding: 3px 9px 3px 9px;
+    margin: 3px;
+    background-color: lightsalmon;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
 #footer {
     padding: 15px 0px 15px 10px;
     margin: 0px 1px 1px 1px;
