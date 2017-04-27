@@ -18,7 +18,7 @@ class Question(models.Model):
     content = models.TextField('Content')
     views = models.PositiveIntegerField('Views', default=0)
     votes = models.IntegerField('Votes', default=0)
-    tags = models.ManyToManyField(Category, verbose_name = 'Tags')
+    categories = models.ManyToManyField(Category, verbose_name = 'Categories')
 
     class Meta:
         verbose_name = 'Question'

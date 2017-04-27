@@ -38,7 +38,11 @@
                             <small>Views</small>
                         </td>
                         <td class="question">
-                            {{ question.title }}
+                            {{ question.title }} <br/>
+
+                            {% for cat in question.categories.all %}
+                                <div class="category">{{ cat }}</div>
+                            {% endfor %}
                         </td>
                     </tr>
                 {% empty %}
