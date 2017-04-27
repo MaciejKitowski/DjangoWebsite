@@ -21,28 +21,25 @@
         <div id="categories">
             categories
         </div>
-        <div id="users">
-            users
-        </div>
         <div id="questions">
             <table>
                 {% for question in latest_questions %}
                     <tr>
-                        <th class="date"> 
+                        <td class="date"> 
                             {{ question.askDate|date:'Y-m-d H:i' }} <br/>
                             <small>Date</small>
-                        </th>
-                        <th class="votes">
+                        </td>
+                        <td class="votes">
                             {{ question.votes }} <br/>
                             <small>Votes</small>
-                        </th>
-                        <th class="views">
+                        </td>
+                        <td class="views">
                             {{ question.views }} <br/>
                             <small>Views</small>
-                        </th>
-                        <th class="question">
+                        </td>
+                        <td class="question">
                             {{ question.title }}
-                        <th>
+                        </td>
                     </tr>
                 {% empty %}
                     <tr><th>Nobody asked a question</th></tr>

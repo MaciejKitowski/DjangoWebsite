@@ -8,10 +8,6 @@ body {
     background-color: blue;
 }
 
-#users {
-    float: left;
-}
-
 #categories {
     float: right;
 }
@@ -23,36 +19,39 @@ body {
 
 #questions table {
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid lightblue;
+    border-collapse: collapse;
+}
+
+#questions td {
+    text-align: center;
+    height: 70px;
+    border: 10px solid lightblue;
+    border-radius: 30px;
+    background-color: gray;
 }
 
 #questions small {
     font-size: 75%;
+    font-weight: bold;
     color: darkgray;
 }
 
-#questions th {
-    height: 70px;
-    border: 1px solid black;
+#questions td.date {
+    width: 20%;    
 }
 
-#questions th.date {
-    width: 20%;
-    border: 1px solid red;
-}
-
-#questions th.votes {
+#questions td.votes {
     width: 10%;
-    border: 1px solid pink;
 }
 
-#questions th.views {
+#questions td.views {
     width: 10%;
-    border: 1px solid green;
 }
 
-#questions th.question {
-    border: 1px solid cyan;
+#questions td.question {
+    width: auto;
+
 }
 
 #footer {
