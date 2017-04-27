@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <html>
     <head>
         <title>
@@ -10,12 +12,12 @@
         <meta name="description" content="Projekt zaliczeniowy na przedmiot Zaawansowane języki skryptowe (Informatyka zaocznie UG - 1rok, semestr 2)">
         <meta name="keywords" content="Django, Python, UG, Uniwersytet Gdański, MFI, Wydział Matematyki fizyki i informatyki, I have no idea what i'm doing'">
         <meta name="author" content="Maciej Kitowski, grupa 1">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
     </head>
     <body>
-        <div class="header">
-            <h2>Header</h2>
+        <div id="header">
+            Header
         </div>
-        <hr>
         <div class="content">
             <div class="questionContainer">
                 <table>
