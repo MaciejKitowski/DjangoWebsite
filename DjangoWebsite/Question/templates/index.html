@@ -52,19 +52,16 @@
                 {% endfor %}
             </table>
             {% if is_paginated %}
-                <div class="pageNumber">
-                    <!-- Display active page number -->
-                    <!-- Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} -->
-
-                    <!-- Display next page link -->
-                    <!-- {% if page_obj.has_next %}
-                        <a href="./?page={{ page_obj.next_page_number }}">Next page</a>
-                    {% endif %} -->
-
-                    <!-- Display previous page link -->
-                    <!--{% if page_obj.has_previous %}
-                        <a href="./?page={{ page_obj.previous_page_number }}">Previous page</a>
-                    {% endif %} -->
+                <div id="pageNumbers">
+                    {% if page_obj.has_previous %}
+                        <a href="./{{ page_obj.previous_page_number }}">Previous page</a> |
+                    {% endif %}
+                    {% for pageNumber in page_obj.paginator.page_range %}
+                        {{ pageNumber }} |
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="./{{ page_obj.next_page_number }}">Next page</a>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>
