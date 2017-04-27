@@ -51,7 +51,10 @@ body {
 
 #questions td.question {
     width: auto;
-
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: left;
+    vertical-align: text-top;
 }
 
 #footer {
