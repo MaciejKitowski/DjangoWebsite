@@ -43,6 +43,8 @@
                             {% for cat in question.categories.all %}
                                 <div class="category">{{ cat }}</div>
                             {% endfor %}
+
+                            <div class="author">Asked by: {{ question.author }}</div>
                         </td>
                     </tr>
                 {% empty %}
