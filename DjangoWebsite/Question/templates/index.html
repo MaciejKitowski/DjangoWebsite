@@ -59,9 +59,9 @@
 
                     {% for pageNumber in page_obj.paginator.page_range %}
                         {% if pageNumber == page_obj.number %}
-                            <div class="currentPage">{{ pageNumber }}</div>
+                            <a href="#" class="currentPage"> {{ pageNumber }} </a>
                         {% else %}
-                            <div class="page">{{ pageNumber }}</div>
+                            <a href="./{{ pageNumber }}" class="page"> {{ pageNumber }} </a>
                         {% endif %}
                     {% endfor %}
                     
