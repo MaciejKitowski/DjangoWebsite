@@ -3,10 +3,13 @@ body {
 }
 
 #header {
-    position: relative;
     padding: 15px 0px 15px 10px;
     margin: 0px 1px 1px 1px;
     background-color: blue;
+}
+
+#users {
+    float: left;
 }
 
 #categories {
@@ -15,12 +18,40 @@ body {
 
 #questions {
     float: center;
-    position: relative;
-    margin: auto;
+    margin: 1px 100px 10px 100px;
+}
+
+#questions table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+#questions small {
+    font-size: 75%;
+    color: darkgray;
+}
+
+#questions th {
+    /*border: 1px solid black;*/
+}
+
+#questions th.date {
+    /*border: 1px solid red;*/
+}
+
+#questions th.votes {
+
+}
+
+#questions th.views {
+
+}
+
+#questions th.question {
+    
 }
 
 #footer {
-    position: relative;
     padding: 15px 0px 15px 10px;
     margin: 0px 1px 1px 1px;
     background-color: blue;
