@@ -8,3 +8,20 @@ body {
     margin: 0px 1px 1px 1px;
     background-color: blue;
 }
+
+#categories {
+    float: right;
+}
+
+#questions {
+    float: center;
+    position: relative;
+    margin: auto;
+}
+
+#footer {
+    position: relative;
+    padding: 15px 0px 15px 10px;
+    margin: 0px 1px 1px 1px;
+    background-color: blue;
+}

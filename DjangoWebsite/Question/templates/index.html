@@ -18,21 +18,23 @@
         <div id="header">
             Header
         </div>
-        <div class="content">
-            <div class="questionContainer">
-                <table>
-                    {% for question in latest_questions %}
-                        <tr>
-                            <th class="date"> {{ question.askDate|date:'Y-m-d H:i' }} </th>
-                            <th class="votes"> {{ question.votes }} </th>
-                            <th class="views"> {{ question.views }} </th>
-                            <th class="question"> {{ question.title }} <th>
-                        </tr>
-                    {% empty %}
-                        <tr><th>Nobody asked a question</th></tr>
-                    {% endfor %}
-                </table>
-            </div>
+        <div id="categories">
+            categories
+        </div>
+
+        <div id="questions">
+            <table>
+                {% for question in latest_questions %}
+                    <tr>
+                        <th class="date"> {{ question.askDate|date:'Y-m-d H:i' }} </th>
+                        <th class="votes"> {{ question.votes }} </th>
+                        <th class="views"> {{ question.views }} </th>
+                        <th class="question"> {{ question.title }} <th>
+                    </tr>
+                {% empty %}
+                    <tr><th>Nobody asked a question</th></tr>
+                {% endfor %}
+            </table>
             {% if is_paginated %}
                 <hr>
                 <div class="pageNumber">
@@ -51,9 +53,8 @@
                 </div>
             {% endif %}
         </div>
-        <hr>
-        <div class="footer">
-            <h2>Footer</h2>
+        <div id="footer">
+            Footer
         </div>
     </body>
 </html>
