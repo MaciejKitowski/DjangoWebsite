@@ -32,23 +32,27 @@ body {
 }
 
 #questions th {
-    /*border: 1px solid black;*/
+    height: 70px;
+    border: 1px solid black;
 }
 
 #questions th.date {
-    /*border: 1px solid red;*/
+    width: 20%;
+    border: 1px solid red;
 }
 
 #questions th.votes {
-
+    width: 10%;
+    border: 1px solid pink;
 }
 
 #questions th.views {
-
+    width: 10%;
+    border: 1px solid green;
 }
 
 #questions th.question {
-    
+    border: 1px solid cyan;
 }
 
 #footer {
