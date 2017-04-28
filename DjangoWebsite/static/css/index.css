@@ -38,15 +38,19 @@ body {
 }
 
 #questions td.date {
-    width: 20%;    
+    width: 15%;    
 }
 
 #questions td.votes {
-    width: 10%;
+    width: 7%;
 }
 
 #questions td.views {
-    width: 10%;
+    width: 7%;
+}
+
+#questions td.answers {
+    width: 7%;
 }
 
 #questions td.question {
