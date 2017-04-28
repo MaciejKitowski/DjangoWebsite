@@ -8,10 +8,6 @@ body {
     background-color: blue;
 }
 
-#categories {
-    float: right;
-}
-
 #questions {
     float: center;
     margin: 1px 100px 10px 100px;
