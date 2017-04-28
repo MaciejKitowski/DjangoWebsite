@@ -26,3 +26,17 @@ class Question(models.Model):
 
     def __unicode__(self):
         return self.title
+
+class Answer(models.Model):
+    author = models.ForeignKey(User)
+    question = models.ForeignKey(Question)
+    answerDate = models.DateTimeField('Answer Date', auto_now_add=True)
+    content = models.TextField('Content')
+    votes = models.IntegerField('Votes', default=0)
+
+    class Meta:
+        verbose_name = 'Answer'
+        verbose_name_plural = 'Answers'
+
+    def __unicode__(self):
+        return self.question.title
