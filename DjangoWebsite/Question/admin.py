@@ -6,16 +6,6 @@ import sys
 class CategoryDisplay(admin.ModelAdmin):
     list_display = ('name', 'countReferences' )
 
-    def countReferences(self, obj):
-        counter = 0
-        for ques in Question.objects.all():
-            for cat in ques.categories.all():
-                if(cat.id == obj.id):
-                    counter += 1
-        return counter
-    #countReferences.admin_order_field  = 'References'
-    countReferences.short_description = 'References'
-
 class QuestionDisplay(admin.ModelAdmin):
     list_display = ('title', 'author', 'askDate', 'views', 'votes')
 

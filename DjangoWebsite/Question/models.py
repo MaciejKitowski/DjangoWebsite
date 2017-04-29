@@ -10,6 +10,15 @@ class Category(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def countReferences(obj):
+        counter = 0
+        for ques in Question.objects.all():
+            for cat in ques.categories.all():
+                if(cat.id == obj.id):
+                    counter += 1
+        return counter
+    countReferences.short_description = 'References'
 
 class Question(models.Model):
     author = models.ForeignKey(User)
