@@ -20,25 +20,8 @@ class Category(models.Model):
         return counter
     countReferences.short_description = 'References'
 
-class Question(models.Model):
-    author = models.ForeignKey(User)
-    title = models.CharField('Title', max_length = 255)
-    askDate = models.DateTimeField('Ask Date', auto_now_add=True)
-    content = models.TextField('Content')
-    views = models.PositiveIntegerField('Views', default=0)
-    votes = models.IntegerField('Votes', default=0)
-    categories = models.ManyToManyField(Category, verbose_name = 'Categories')
-
-    class Meta:
-        verbose_name = 'Question'
-        verbose_name_plural = 'Questions'
-
-    def __unicode__(self):
-        return self.title
-
 class Answer(models.Model):
     author = models.ForeignKey(User)
-    question = models.ForeignKey(Question)
     answerDate = models.DateTimeField('Answer Date', auto_now_add=True)
     content = models.TextField('Content')
     votes = models.IntegerField('Votes', default=0)
@@ -48,4 +31,23 @@ class Answer(models.Model):
         verbose_name_plural = 'Answers'
 
     def __unicode__(self):
-        return self.question.title
+        return self.answerDate.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.content
+
+class Question(models.Model):
+    author = models.ForeignKey(User)
+    title = models.CharField('Title', max_length = 255)
+    askDate = models.DateTimeField('Ask Date', auto_now_add=True)
+    content = models.TextField('Content')
+    views = models.PositiveIntegerField('Views', default=0)
+    votes = models.IntegerField('Votes', default=0)
+    categories = models.ManyToManyField(Category, verbose_name = 'Categories', blank = True)
+    answers = models.ManyToManyField(Answer, verbose_name = 'Answers', blank = True)
+
+    class Meta:
+        verbose_name = 'Question'
+        verbose_name_plural = 'Questions'
+
+    def __unicode__(self):
+        return self.title
+
+
