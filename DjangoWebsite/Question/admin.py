@@ -1,8 +1,6 @@
 from django.contrib import admin
 from Question.models import *
 
-import sys
-
 class CategoryDisplay(admin.ModelAdmin):
     list_display = ('name', 'countReferences' )
 
