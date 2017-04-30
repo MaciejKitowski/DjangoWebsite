@@ -19,6 +19,11 @@ body {
     border-collapse: collapse;
 }
 
+#questionNavbar {
+    width: 100%;
+    background-color: blue;
+}
+
 #questions td {
     text-align: center;
     height: 70px;
