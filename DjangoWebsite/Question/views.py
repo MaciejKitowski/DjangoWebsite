@@ -10,25 +10,14 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views' }
-        qr = super(IndexView, self).get_queryset().order_by(sortbyColumn[self.__getSortType()])
-
+        
+        if 'sortby' in self.kwargs and self.kwargs['sortby'] in sortbyColumn:
+            qr = super(IndexView, self).get_queryset().order_by(sortbyColumn[self.kwargs['sortby']])
+        else:
+            qr = super(IndexView, self).get_queryset().order_by(sortbyColumn['date-desc'])
+        
         return qr
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         return context
-
-#**********************************************************************************
-
-    def __getSortType(self):
-        try:
-            buffer = self.kwargs['sortby']
-            return buffer
-        except:
-            return 'date-desc'
-
-    def __getQuerySorted(self, sortField, toReverse = False):
-        query = super(IndexView, self).get_queryset().order_by(sortField)
-        if toReverse: query = query.reverse()
-        return query
-
