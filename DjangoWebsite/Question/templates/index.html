@@ -19,13 +19,12 @@
             Header
         </div>
         <div id="questions">
+            <div id="questionNavbar">
+                Navbar
+            </div>
             <table>
                 {% for question in latest_questions %}
                     <tr>
-                        <td class="date"> 
-                            {{ question.askDate|date:'Y-m-d H:i' }} <br/>
-                            <small>Date</small>
-                        </td>
                         <td class="votes">
                             {{ question.votes }} <br/>
                             <small>Votes</small>
@@ -44,7 +43,7 @@
                                 <div class="category">{{ cat }}</div>
                             {% endfor %}
 
-                            <div class="author">Asked by: {{ question.author }}</div>
+                            <div class="detail"><b>{{ question.askDate|date:'Y-m-d H:i' }}</b> by {{ question.author }}</div>
                         </td>
                     </tr>
                 {% empty %}
