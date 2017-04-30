@@ -12,12 +12,7 @@ class Category(models.Model):
         return self.name
     
     def countReferences(obj):
-        counter = 0
-        for ques in Question.objects.all():
-            for cat in ques.categories.all():
-                if(cat.id == obj.id):
-                    counter += 1
-        return counter
+        return Question.objects.filter(categories__in=[obj]).count()
     countReferences.short_description = 'References'
 
 class Answer(models.Model):
