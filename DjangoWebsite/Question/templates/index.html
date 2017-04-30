@@ -26,7 +26,19 @@
         </div>
         <div id="questions">
             <div id="questionNavbar">
-                Navbar
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true">Sort by <span class="glyphicon glyphicon-sort"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortDropdown">
+                        <li><a href="/{{ page_obj.number }}/date-asc">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                        <li><a href="/{{ page_obj.number }}/date-desc">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/{{ page_obj.number }}/votes-asc">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                        <li><a href="/{{ page_obj.number }}/votes-desc">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/{{ page_obj.number }}/views-asc">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                        <li><a href="/{{ page_obj.number }}/views-desc">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    </ul>
+                </div>
             </div>
             <table>
                 {% for question in latest_questions %}
