@@ -9,28 +9,23 @@ class IndexView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        sortType = self.__getSortType()
+        sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views' }
+        qr = super(IndexView, self).get_queryset().order_by(sortbyColumn[self.__getSortType()])
 
-        if sortType == 'date-asc': return self.__getQuerySorted('askDate')
-        elif sortType == 'date-desc': return self.__getQuerySorted('askDate', True)
-        elif sortType == 'votes-asc': return self.__getQuerySorted('votes')
-        elif sortType == 'votes-desc': return self.__getQuerySorted('votes', True)
-        elif sortType == 'views-asc': return self.__getQuerySorted('views')
-        elif sortType == 'views-desc': return self.__getQuerySorted('views', True)
-        else: return self.__getQuerySorted('askDate', True)
+        return qr
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         return context
 
-
+#**********************************************************************************
 
     def __getSortType(self):
         try:
             buffer = self.kwargs['sortby']
             return buffer
         except:
-            return 'date-dest'
+            return 'date-desc'
 
     def __getQuerySorted(self, sortField, toReverse = False):
         query = super(IndexView, self).get_queryset().order_by(sortField)
