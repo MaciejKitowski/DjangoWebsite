@@ -5,21 +5,23 @@ body {
 
 #header {
     padding: 15px 0px 15px 10px;
-    margin: 0px 1px 1px 1px;
+    margin: 0px 1px 0px 1px;
     background-color: blue;
 }
 
-#questions {
+#mainContent {
     float: center;
-    margin: 1px 100px 10px 100px;
+    padding: 1px 10px 10px 10px;
+    margin: 0px 100px 0px 100px;
+    background-color: lightgray;
 }
 
 #questionNavbar {
     display:inline-block;
     width: 100%;
-    margin: 5px 0px 0px 0px;
-    padding: 3px 5px 3px 5px;
-    background-color: blue;
+    margin: 5px 0px 5px 0px;
+    padding: 10px 5px 3px 5px;
+    
 }
 
 #addQuestionButton {
@@ -30,39 +32,38 @@ body {
     float: right;
 }
 
-#questions table {
+#mainContent table {
     width: 100%;
-    border: 1px solid lightblue;
-    border-collapse: collapse;
+    border-collapse: separate; 
+    border-spacing: 5px;
 }
 
-#questions td {
+#mainContent td {
     text-align: center;
     height: 70px;
-    border: 10px solid lightblue;
-    border-radius: 30px;
+    border-radius: 15px;
     background-color: gray;
 }
 
-#questions small {
+#mainContent small {
     font-size: 75%;
     font-weight: bold;
     color: darkgray;
 }
 
-#questions td.votes {
+#mainContent td.votes {
     width: 7%;
 }
 
-#questions td.views {
+#mainContent td.views {
     width: 7%;
 }
 
-#questions td.answers {
+#mainContent td.answers {
     width: 7%;
 }
 
-#questions td.question {
+#mainContent td.question {
     width: auto;
     padding-top: 10px;
     padding-left: 10px;
@@ -70,7 +71,7 @@ body {
     vertical-align: text-top;
 }
 
-#questions .category {
+#mainContent .category {
     display:inline-block;
     margin-top: 5px;
     margin-right: 5px;
@@ -79,18 +80,18 @@ body {
     font-size: 70%;
 }
 
-#questions .category:hover {
+#mainContent .category:hover {
     background-color: pink;
 }
 
-#questions .detail {
+#mainContent .detail {
     float: right;
     margin-right: 5px;
     padding: 2px 5px 2px 5px;
     font-size: 70%;
 }
 
-#questions .detail:hover {
+#mainContent .detail:hover {
     background-color: pink;
 }
 
