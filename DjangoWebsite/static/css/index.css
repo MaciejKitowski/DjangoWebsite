@@ -14,19 +14,26 @@ body {
     margin: 1px 100px 10px 100px;
 }
 
-#questions table {
-    width: 100%;
-    border: 1px solid lightblue;
-    border-collapse: collapse;
-}
-
 #questionNavbar {
     display:inline-block;
     width: 100%;
     margin: 5px 0px 0px 0px;
     padding: 3px 5px 3px 5px;
-    text-align: right;
     background-color: blue;
+}
+
+#addQuestionButton {
+    float: left;
+}
+
+#sortbyDropdown {
+    float: right;
+}
+
+#questions table {
+    width: 100%;
+    border: 1px solid lightblue;
+    border-collapse: collapse;
 }
 
 #questions td {
