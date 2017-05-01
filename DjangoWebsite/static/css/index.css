@@ -1,6 +1,7 @@
 body {
     background-color: lightblue;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #D6D6D6;
 }
 
 #header {
@@ -13,7 +14,7 @@ body {
     float: center;
     padding: 1px 10px 10px 10px;
     margin: 0px 100px 0px 100px;
-    background-color: lightgray;
+    background-color: #EFEFEF;
 }
 
 #questionNavbar {
@@ -21,7 +22,6 @@ body {
     width: 100%;
     margin: 5px 0px 5px 0px;
     padding: 10px 5px 3px 5px;
-    
 }
 
 #addQuestionButton {
@@ -34,15 +34,15 @@ body {
 
 #mainContent table {
     width: 100%;
-    border-collapse: separate; 
-    border-spacing: 5px;
+}
+
+#mainContent tr {
+    border-bottom: 1px solid #b5b5b5;
 }
 
 #mainContent td {
     text-align: center;
     height: 70px;
-    border-radius: 15px;
-    background-color: gray;
 }
 
 #mainContent small {
@@ -65,10 +65,9 @@ body {
 
 #mainContent td.question {
     width: auto;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 10px 10px 0px 5px;
     text-align: left;
-    vertical-align: text-top;
+    vertical-align: top;
 }
 
 #mainContent .category {
@@ -85,6 +84,7 @@ body {
 }
 
 #mainContent .detail {
+    vertical-align: bottom;
     float: right;
     margin-right: 5px;
     padding: 2px 5px 2px 5px;
