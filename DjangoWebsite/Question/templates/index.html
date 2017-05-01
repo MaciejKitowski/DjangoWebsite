@@ -81,7 +81,7 @@
             {% if is_paginated %}
                 <div id="pageNumbers"> 
                     {% if page_obj.has_previous %}
-                        <a href="/{{ page_obj.previous_page_number }}/{{ request.resolver_match.kwargs.sortby }}">Previous page</a>
+                        <a href="/{{ page_obj.previous_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Previous page</a>
                     {% endif %}
 
                     {% for pageNumber in page_obj.paginator.page_range %}
@@ -93,7 +93,7 @@
                     {% endfor %}
                     
                     {% if page_obj.has_next %}
-                        <a href="/{{ page_obj.next_page_number }}/{{ request.resolver_match.kwargs.sortby }}">Next page</a>
+                        <a href="/{{ page_obj.next_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Next page</a>
                     {% endif %}
                 </div>
             {% endif %}
