@@ -37,6 +37,9 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="/{{ page_obj.number }}/views-asc">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
                         <li><a href="/{{ page_obj.number }}/views-desc">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/{{ page_obj.number }}/answers-asc">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                        <li><a href="/{{ page_obj.number }}/answers-desc">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -52,6 +55,7 @@
                             <small>Views</small>
                         </td>
                         <td class ="answers">
+                            <!-- { question.answers.count } - Nie używać, bo nie można sortować po liczbie odpowiedzi -->
                             {{ question.answersCount }} <br/>
                             <small>Answers</small>
                         </td>

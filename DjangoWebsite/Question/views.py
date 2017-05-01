@@ -10,7 +10,7 @@ class IndexView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views' }
+        sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views', 'answers-asc':'answersCount', 'answers-desc':'-answersCount' }
         qr = super(IndexView, self).get_queryset()
         qr = qr.annotate(answersCount=Count('answers'))
 
