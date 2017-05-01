@@ -76,12 +76,14 @@ body {
     margin-top: 5px;
     margin-right: 5px;
     padding: 2px 5px 2px 5px;
-    background-color: red;
+    background-color: #9E9E9E;
     font-size: 70%;
 }
 
 #mainContent .category:hover {
-    background-color: pink;
+    background-color: #D6D6D6;
+    padding: 1px 4px 1px 4px;
+    border: 1px solid #9E9E9E;
 }
 
 #mainContent .detail {
@@ -93,7 +95,9 @@ body {
 }
 
 #mainContent .detail:hover {
-    background-color: pink;
+    background-color: #D6D6D6;
+    padding: 1px 4px 1px 4px;
+    border: 1px solid #9E9E9E;
 }
 
 #pageNumbers {
@@ -105,22 +109,26 @@ body {
 }
 
 #pageNumbers .page {
+    color: black;
     display: inline-block;
     padding: 3px 9px 3px 9px;
     margin: 2px;
 }
 
 #pageNumbers .page:hover {
-    background-color: pink;
+    background-color: #ADADAD;
+    text-decoration: none;
 }
 
 #pageNumbers .currentPage {
+    color: black;
     display: inline-block;
     padding: 3px 9px 3px 9px;
     margin: 3px;
-    background-color: lightsalmon;
+    background-color: #B5B5B5;
     font-weight: bold;
     border: 1px solid black;
+    text-decoration: none;
 }
 
 #backToTop {
