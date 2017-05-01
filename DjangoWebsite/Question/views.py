@@ -7,7 +7,7 @@ class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'questions'
     model = models.Question
-    paginate_by = 10
+    paginate_by = 13
 
     def get_queryset(self):
         sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views', 'answers-asc':'answersCount', 'answers-desc':'-answersCount' }
