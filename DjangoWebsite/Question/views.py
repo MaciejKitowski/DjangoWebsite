@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
         qr = qr.annotate(answersCount=Count('answers'))
 
         if 'category' in self.kwargs:
-            qr = qr.filter(categories__name = self.kwargs['category'])
+            qr = qr.filter(categories__name__iexact = self.kwargs['category'])
 
         if 'sortby' in self.kwargs and self.kwargs['sortby'] in sortbyColumn:
             qr = qr.order_by(sortbyColumn[self.kwargs['sortby']])
