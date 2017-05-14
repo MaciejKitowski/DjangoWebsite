@@ -67,7 +67,7 @@
                             {{ question.title }} <br/>
 
                             {% for cat in question.categories.all %}
-                                <div class="category">{{ cat }}</div>
+                                <a href = "/{{ cat }}/1" class = "category">{{ cat }}</a>
                             {% endfor %}
                             <br/>
                             <div class="detail"><b>{{ question.askDate|date:'Y-m-d H:i' }}</b> by {{ question.author }}</div>

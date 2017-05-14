@@ -82,6 +82,8 @@ body {
     margin-right: 5px;
     padding: 2px 5px 2px 5px;
     background-color: #9E9E9E;
+    text-decoration: none;
+    color: black;
     font-size: 70%;
 }
 
