@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <script src="{% static 'jquery/jquery.min.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        
+
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
     </head>
     <body>
@@ -33,17 +33,17 @@
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true">Sort by <span class="glyphicon glyphicon-sort"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortDropdown">
-                            <li><a href="/{{ page_obj.number }}/date-asc">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                            <li><a href="/{{ page_obj.number }}/date-desc">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                            <li><a href="./date-asc">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                            <li><a href="./date-desc">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/{{ page_obj.number }}/votes-asc">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                            <li><a href="/{{ page_obj.number }}/votes-desc">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                            <li><a href="./votes-asc">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                            <li><a href="./votes-desc">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/{{ page_obj.number }}/views-asc">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                            <li><a href="/{{ page_obj.number }}/views-desc">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                            <li><a href="./views-asc">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                            <li><a href="./views-desc">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/{{ page_obj.number }}/answers-asc">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                            <li><a href="/{{ page_obj.number }}/answers-desc">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                            <li><a href="./answers-asc">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                            <li><a href="./answers-desc">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 {% endfor %}
             </table>
             {% if is_paginated %}
-                <div id="pageNumbers"> 
+                <div id="pageNumbers">
                     {% if page_obj.has_previous %}
                         <a href="/{{ page_obj.previous_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Previous page</a>
                     {% endif %}
@@ -90,7 +90,7 @@
                             <a href="/{{ pageNumber }}/{{ request.resolver_match.kwargs.sortby }}" class="page"> {{ pageNumber }} </a>
                         {% endif %}
                     {% endfor %}
-                    
+
                     {% if page_obj.has_next %}
                         <a href="/{{ page_obj.next_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Next page</a>
                     {% endif %}

@@ -14,6 +14,9 @@ class IndexView(generic.ListView):
         qr = super(IndexView, self).get_queryset()
         qr = qr.annotate(answersCount=Count('answers'))
 
+        if 'category' in self.kwargs and models.Category.objects.filter(name = self.kwargs['category']).count() > 0:
+            qr = qr.filter(categories__name = self.kwargs['category'])
+
         if 'sortby' in self.kwargs and self.kwargs['sortby'] in sortbyColumn:
             qr = qr.order_by(sortbyColumn[self.kwargs['sortby']])
         else:

@@ -4,4 +4,5 @@ from Question import views
 urlpatterns = [
     url(r'^(?P<page>[\d]*)/?$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<page>[\d]+)/(?P<sortby>[\w\-]+)$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<category>[\w]+)/(?P<page>[\d]+)/(?P<sortby>[\w\-]*)$', views.IndexView.as_view(), name='index'),
 ]
