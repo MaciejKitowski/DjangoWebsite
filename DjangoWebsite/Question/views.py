@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Count
-from Question import models
+from Question import models, forms
+from django.contrib.auth import authenticate, login
 
 class IndexView(generic.ListView):
     template_name = 'index.html'
@@ -26,4 +27,21 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        return context
+
+class RegisterView(generic.edit.FormView):
+    template_name = 'register.html'
+    form_class = forms.RegisterForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(self.request, user)
+        return super(RegisterView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(RegisterView, self).get_context_data(**kwargs)
         return context

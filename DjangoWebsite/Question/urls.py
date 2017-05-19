@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^(?P<category>[\w\-\_]+)/(?P<page>[\d]+)/(?P<sortby>[\w\-]*)$', views.IndexView.as_view(), name='index'),
     url(r'^login/$', auth_view.login, {'template_name': 'login.html', 'authentication_form': forms.LoginForm}),
     url(r'^logout/$', auth_view.logout, kwargs={'next_page': '/'}),
+    url(r'^register/$', views.RegisterView.as_view()),
 ]
