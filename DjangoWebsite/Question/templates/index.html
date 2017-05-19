@@ -80,18 +80,67 @@
     </table>
     {% if is_paginated %}
         <div id="pageNumbers">
-            {% if page_obj.has_previous %}
-                <a href="/{{ page_obj.previous_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Previous page</a>
-            {% endif %}
-            {% for pageNumber in page_obj.paginator.page_range %}
-                {% if pageNumber == page_obj.number %}
-                    <a href="#" class="currentPage"> {{ pageNumber }} </a>
+            {% if request.resolver_match.kwargs.category %}
+                {% if request.resolver_match.kwargs.sortby %}
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.previous_page_number sortby=request.resolver_match.kwargs.sortby %}" class="page">Previous page</a>
+                    {% endif %}
+                    {% for pageNumber in page_obj.paginator.page_range %}
+                        {% if pageNumber == page_obj.number %}
+                            <a href="#" class="currentPage"> {{ pageNumber }} </a>
+                        {% else %}
+                            <a href="{% url 'index' category=request.resolver_match.kwargs.category page=pageNumber sortby=request.resolver_match.kwargs.sortby %}" class="page"> {{ pageNumber }} </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.next_page_number sortby=request.resolver_match.kwargs.sortby %}" class="page">Next page</a>
+                    {% endif %}
                 {% else %}
-                    <a href="/{{ pageNumber }}/{{ request.resolver_match.kwargs.sortby }}" class="page"> {{ pageNumber }} </a>
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.previous_page_number sortby='' %}" class="page">Previous page</a>
+                    {% endif %}
+                    {% for pageNumber in page_obj.paginator.page_range %}
+                        {% if pageNumber == page_obj.number %}
+                            <a href="#" class="currentPage"> {{ pageNumber }} </a>
+                        {% else %}
+                            <a href="{% url 'index' category=request.resolver_match.kwargs.category page=pageNumber sortby='' %}" class="page"> {{ pageNumber }} </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.next_page_number sortby='' %}" class="page">Next page</a>
+                    {% endif %}
                 {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-                <a href="/{{ page_obj.next_page_number }}/{{ request.resolver_match.kwargs.sortby }}" class="page">Next page</a>
+
+            {% else %}
+                {% if request.resolver_match.kwargs.sortby %}
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'index' page=page_obj.previous_page_number sortby=request.resolver_match.kwargs.sortby %}" class="page">Previous page</a>
+                    {% endif %}
+                    {% for pageNumber in page_obj.paginator.page_range %}
+                        {% if pageNumber == page_obj.number %}
+                            <a href="#" class="currentPage"> {{ pageNumber }} </a>
+                        {% else %}
+                            <a href="{% url 'index' page=pageNumber sortby=request.resolver_match.kwargs.sortby %}" class="page"> {{ pageNumber }} </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'index' page=page_obj.next_page_number sortby=request.resolver_match.kwargs.sortby %}" class="page">Next page</a>
+                    {% endif %}
+                {% else %}
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'index' page=page_obj.previous_page_number %}" class="page">Previous page</a>
+                    {% endif %}
+                    {% for pageNumber in page_obj.paginator.page_range %}
+                        {% if pageNumber == page_obj.number %}
+                            <a href="#" class="currentPage"> {{ pageNumber }} </a>
+                        {% else %}
+                            <a href="{% url 'index' page=pageNumber %}" class="page"> {{ pageNumber }} </a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'index' page=page_obj.next_page_number %}" class="page">Next page</a>
+                    {% endif %}
+                {% endif %}
             {% endif %}
         </div>
     {% endif %}
