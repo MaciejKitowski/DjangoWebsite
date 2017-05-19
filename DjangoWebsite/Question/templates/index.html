@@ -21,17 +21,31 @@
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true">Sort by <span class="glyphicon glyphicon-sort"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortDropdown">
-                    <li><a href="./date-asc">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                    <li><a href="./date-desc">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                {% if request.resolver_match.kwargs.category %}
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='date-asc' %}">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='date-desc' %}">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="./votes-asc">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                    <li><a href="./votes-desc">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='votes-asc' %}">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='votes-desc' %}">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="./views-asc">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                    <li><a href="./views-desc">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='views-asc' %}">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='views-desc' %}">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="./answers-asc">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
-                    <li><a href="./answers-desc">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='answers-asc' %}">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' category=request.resolver_match.kwargs.category page=page_obj.number sortby='answers-desc' %}">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                {% else %}
+                    <li><a href="{% url 'index' page=page_obj.number sortby='date-asc' %}">Date <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='date-desc' %}">Date <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='votes-asc' %}">Votes <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='votes-desc' %}">Votes <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='views-asc' %}">Views <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='views-desc' %}">Views <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='answers-asc' %}">Answers <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="{% url 'index' page=page_obj.number sortby='answers-desc' %}">Answers <span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a></li>
+                {% endif %}
                 </ul>
             </div>
         </div>
