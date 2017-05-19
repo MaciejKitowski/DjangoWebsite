@@ -23,7 +23,9 @@ body {
     outline: 4px solid #C4C4C4;
     border-left: 2px solid #B5B5B5;
     border-right: 2px solid #B5B5B5;
+    color: black;
     text-align: center;
+    text-decoration: none;
 }
 
 #header .Button:hover {
