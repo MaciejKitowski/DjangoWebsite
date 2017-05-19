@@ -5,10 +5,30 @@ body {
 }
 
 #header {
-    padding: 15px 0px 15px 10px;
+    /*padding: 15px 0px 15px 10px;*/
+    height: 50px;
     margin: 0px 1px 0px 1px;
     background-color: #C4C4C4;
     border-bottom: 1px solid #B5B5B5;
+}
+
+#header .Button {
+    vertical-align: bottom;
+    margin: 3px 5px 0px 5px;
+    padding: 0px 15px 0px 15px;
+    display:inline-block;
+    height: 42px;
+    line-height: 42px;
+    background-color: #C4C4C4;
+    outline: 4px solid #C4C4C4;
+    border-left: 2px solid #B5B5B5;
+    border-right: 2px solid #B5B5B5;
+    text-align: center;
+}
+
+#header .Button:hover {
+    background-color: #CBCBCB;
+    outline: 4px solid #CBCBCB;
 }
 
 #mainContent {
@@ -150,4 +170,5 @@ body {
     margin: 0px 1px 1px 1px;
     background-color: #C4C4C4;
     border-top: 1px solid #B5B5B5;
+    text-align: center;
 }
