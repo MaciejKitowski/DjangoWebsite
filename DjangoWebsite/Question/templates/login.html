@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Login page
+{% endblock %}
+
+{% block CSS %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <div class="Error">Wrong username/password, try again</div>
+    {% endif %}
+    <h4> Login </h4>
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        {% csrf_token %}
+        <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+            {{ form.username }}
+        </div>
+        <div class="input-group">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></div>
+            {{ form.password }}
+        </div>      
+        <button type="submit" class="btn btn-primary" value="login">Login</button>
+    </form>
+{% endblock %}
