@@ -41,9 +41,6 @@ class RegisterView(generic.edit.FormView):
         user = authenticate(username=username, password=raw_password)
         login(self.request, user)
         return super(RegisterView, self).form_valid(form)
-    
-    def form_invalid(self, form):
-        return super(RegisterView, self).form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super(RegisterView, self).get_context_data(**kwargs)

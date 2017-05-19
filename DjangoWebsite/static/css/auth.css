@@ -36,3 +36,8 @@
     border-radius: 10px;
     border: 1px solid #CBCBCB;
 }
+
+.Error p {
+    padding-top: 5px;
+    line-height: 10px;
+}
