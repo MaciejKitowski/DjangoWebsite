@@ -71,7 +71,7 @@
                 <td class="question">
                     {{ question.title }} <br/>
                     {% for cat in question.categories.all %}
-                        <a href = "/{{ cat }}/1" class = "category">{{ cat }}</a>
+                        <a href = "/category/{{ cat }}/1" class = "category">{{ cat }}</a>
                     {% endfor %}
                     <br/>
                     <div class="detail"><b>{{ question.askDate|date:'Y-m-d H:i' }}</b> by {{ question.author }}</div>
