@@ -14,9 +14,12 @@
 
 {% block content %}
     <div id="questionNavbar">
-        <div id="addQuestionButton">
-            <a href="#" class="btn btn-default" role="button">Add new question</a>
-        </div>
+        {% if user.is_authenticated %}
+            <div id="addQuestionButton">
+                <a href="#" class="btn btn-default" role="button">Add new question</a>
+            </div>
+        {% endif %}
+        
         <div id="sortbyDropdown">
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true">Sort by <span class="glyphicon glyphicon-sort"></span></button>
