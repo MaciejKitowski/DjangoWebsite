@@ -39,6 +39,7 @@
         {% if user.is_authenticated %}
             <h3>Add new question</h3>
             <form method="post" action="{% url 'newQuestion' %}">
+                {% csrf_token %}
                 <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></div>
                     {{ form.title }}

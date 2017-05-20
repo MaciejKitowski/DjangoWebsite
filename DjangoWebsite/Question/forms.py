@@ -13,6 +13,8 @@ class NewQuestionForm(forms.ModelForm):
         label = "Content",
         widget=forms.Textarea(attrs={'class': 'form-control', 'name': 'content'})
     )
+    choices = [(pt.id, unicode(pt)) for pt in models.Category.objects.all()]
+
     categories = forms.ModelChoiceField(
         label = "Categories",
         widget=forms.Select(attrs={'class': 'form-control', 'name': 'categories'}),

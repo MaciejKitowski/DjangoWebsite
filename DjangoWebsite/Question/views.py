@@ -44,6 +44,9 @@ class NewQuestionView(generic.edit.FormView):
     form_class = forms.NewQuestionForm
     success_url = '/'
 
+    def form_valid(self, form):
+        return super(NewQuestionView, self).form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super(NewQuestionView, self).get_context_data(**kwargs)
         return context
