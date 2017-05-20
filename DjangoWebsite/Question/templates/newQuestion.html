@@ -19,13 +19,14 @@
                 </div>'
             );
 
-            if($( '.checkboxField' ).length > 1 && $( "a[class='btn btn-danger']" ).length == 0) {
-                $( "#CategoryButtons" ).append('<a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>');
+            if($('.checkboxField').length > 1 && $("a[class='btn btn-danger']").length == 0) {
+                $("#CategoryButtons").append('<a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>');
             }
         }
 
         function removeCategory() {
-
+            $('.checkboxField').last().remove();
+            if($('.checkboxField').length == 1) $("a[class='btn btn-danger']").remove();
         }
     </script>
 {% endblock %}
