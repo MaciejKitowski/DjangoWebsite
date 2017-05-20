@@ -4,6 +4,17 @@
     padding-left: 7%;
 }
 
+#Navbar {
+    display:inline-block;
+    width: 100%;
+    margin: 5px 0px 5px 0px;
+    padding: 10px 5px 3px 5px;
+}
+
+#RequestCategoryButton {
+    float:left;
+}
+
 .Category {
     align-content: center;
     display:inline-block;

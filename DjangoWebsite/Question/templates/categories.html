@@ -13,7 +13,13 @@
 {% endblock %}
 
 {% block content %}
-    <!--<table>-->
+    <div id="Navbar">
+        {% if user.is_authenticated %}
+            <div id="RequestCategoryButton">
+                <a href="#" class="btn btn-default" role="button">Request new category</a>
+            </div>
+        {% endif %}
+    </div>
     <div id="Categories">
         {% for cat in categories %}
             <div class="Category">
@@ -22,20 +28,4 @@
             </div>
         {% endfor %}
     </div>
-
-        <!--{% for cat in categories %}
-            {% if forloop.counter|divisibleby:2 %}
-                <tr>
-            {% endif %}
-
-
-            
-                <td> {{ cat.name }} </td>
-                <td> {{ cat.countReferences }} </td>
-
-            {% if forloop.counter0|divisibleby:3 %}
-                </tr>
-            {% endif %}
-        {% endfor %}-->
-    <!--</table>-->
 {% endblock %}
