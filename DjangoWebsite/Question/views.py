@@ -48,6 +48,7 @@ class NewQuestionView(generic.edit.FormView):
         candidate = form.save(commit=False)
         candidate.author = self.request.user
         candidate.save()
+        form.save_m2m()
         return super(NewQuestionView, self).form_valid(candidate)
 
     def get_context_data(self, **kwargs):
