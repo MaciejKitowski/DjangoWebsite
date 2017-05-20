@@ -7,29 +7,6 @@
 
 {% block CSS %}
     <link rel="stylesheet" href="{% static 'css/newQuestion.css' %}">
-<!--
-    <script>
-        function addCategory() {
-            $('#categories').append(
-                '<div class="checkboxField"> \
-                    <div class="input-group"> \
-                        <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div> \
-                        {{ form.categories|escapejs }} \
-                    </div>\
-                </div>'
-            );
-
-            if($('.checkboxField').length > 1 && $("a[class='btn btn-danger']").length == 0) {
-                $("#CategoryButtons").append('<a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>');
-            }
-        }
-
-        function removeCategory() {
-            $('.checkboxField').last().remove();
-            if($('.checkboxField').length == 1) $("a[class='btn btn-danger']").remove();
-        }
-    </script>
--->
 {% endblock %}
 
 {% block content %}
@@ -62,13 +39,8 @@
                     {{ form.content }}
                 </div>
                 <h4>Categories</h4>
-                <small>Press ctrl to select multiple</small>
+                <small>Press ctrl to select multiple categories.</small>
                 <div id="categories">
-                    <!--
-                    <div id="CategoryButtons">
-                        <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
-                    </div>
-                    -->
                     <div class="checkboxField">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
