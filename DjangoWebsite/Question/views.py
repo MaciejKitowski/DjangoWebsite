@@ -42,6 +42,7 @@ class NewQuestionView(generic.edit.FormView):
         candidate.save()
         form.save_m2m()
         return super(NewQuestionView, self).form_valid(candidate)
+        #return render(self.request, 'login.html', self.get_context_data()) - Przenoszenie do konkretnej strony, przyda sie jak zrobie template dla pytan
 
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
