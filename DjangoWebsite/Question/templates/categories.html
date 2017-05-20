@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Question categories
+    {% if is_paginated %}
+        | Page: {{ page_obj.number }}
+    {% endif %}
+{% endblock %}
+
+{% block CSS %}
+    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!--<table>-->
+    <div id="Categories">
+        {% for cat in categories %}
+            <div class="Category">
+                <div class="name">{{ cat.name }}</div>
+                <div class="count"> {{ cat.countReferences }} </div>
+            </div>
+        {% endfor %}
+    </div>
+
+        <!--{% for cat in categories %}
+            {% if forloop.counter|divisibleby:2 %}
+                <tr>
+            {% endif %}
+
+
+            
+                <td> {{ cat.name }} </td>
+                <td> {{ cat.countReferences }} </td>
+
+            {% if forloop.counter0|divisibleby:3 %}
+                </tr>
+            {% endif %}
+        {% endfor %}-->
+    <!--</table>-->
+{% endblock %}

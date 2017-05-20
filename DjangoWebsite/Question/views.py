@@ -29,6 +29,16 @@ class IndexView(generic.ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         return context
 
+class CategoriesView(generic.ListView):
+    template_name = 'categories.html'
+    context_object_name = 'categories'
+    model = models.Category
+    paginate_by = 21
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoriesView, self).get_context_data(**kwargs)
+        return context
+
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
     form_class = forms.RegisterForm

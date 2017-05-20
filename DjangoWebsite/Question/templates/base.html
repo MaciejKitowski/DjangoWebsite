@@ -18,7 +18,7 @@
     <body>
         <div id="header">
             <a href="/" class="Button"><img src="{% static 'graphics/logo.svg' %}" width="250px" height="40px"></img></a>
-            <a href="#" class="Button"> Categories </a>
+            <a href="/categories" class="Button"> Categories </a>
             <div id="auth">
                 {% if user.is_authenticated %}
                     <small>Logged as <b>{{ user.get_username }}</b></small>
