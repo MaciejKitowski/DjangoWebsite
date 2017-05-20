@@ -43,7 +43,7 @@ class NewQuestionView(generic.edit.FormView):
     template_name = 'newQuestion.html'
     form_class = forms.NewQuestionForm
     success_url = '/'
-
+    
     def form_valid(self, form):
         return super(NewQuestionView, self).form_valid(form)
 

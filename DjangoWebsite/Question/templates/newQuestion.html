@@ -7,7 +7,7 @@
 
 {% block CSS %}
     <link rel="stylesheet" href="{% static 'css/newQuestion.css' %}">
-
+<!--
     <script>
         function addCategory() {
             $('#categories').append(
@@ -29,12 +29,17 @@
             if($('.checkboxField').length == 1) $("a[class='btn btn-danger']").remove();
         }
     </script>
+-->
 {% endblock %}
 
 {% block content %}
     <div id="FormContent">
         {% if form.errors %}
-            <div class="Error">{{ form.errors }}</div>
+            <div class="Error">
+                {% for error in form.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
         {% endif %}
         {% if user.is_authenticated %}
             <h3>Add new question</h3>
@@ -49,10 +54,13 @@
                     {{ form.content }}
                 </div>
                 <h4>Categories</h4>
+                <small>Press ctrl to select multiple</small>
                 <div id="categories">
+                    <!--
                     <div id="CategoryButtons">
                         <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
                     </div>
+                    -->
                     <div class="checkboxField">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
