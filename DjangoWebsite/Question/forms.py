@@ -2,6 +2,26 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from Question import models
+
+class NewQuestionForm(forms.ModelForm):
+    title = forms.CharField(
+        label = "Title",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'title'})
+    )
+    content = forms.CharField(
+        label = "Content",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'name': 'content'})
+    )
+    categories = forms.ModelChoiceField(
+        label = "Categories",
+        widget=forms.Select(attrs={'class': 'form-control', 'name': 'categories'}),
+        queryset=models.Category.objects.all()
+    )
+
+    class Meta:
+        model = models.Question
+        fields = ('title', 'content', 'categories')
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(

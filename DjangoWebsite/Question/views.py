@@ -39,6 +39,14 @@ class CategoriesView(generic.ListView):
         context = super(CategoriesView, self).get_context_data(**kwargs)
         return context
 
+class NewQuestionView(generic.edit.FormView):
+    template_name = 'newQuestion.html'
+    form_class = forms.NewQuestionForm
+
+    def get_context_data(self, **kwargs):
+        context = super(NewQuestionView, self).get_context_data(**kwargs)
+        return context
+
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
     form_class = forms.RegisterForm
