@@ -37,7 +37,15 @@
         {% if form.errors %}
             <div class="Error">
                 {% for error in form.errors %}
-                    {{ error }}
+                    {% if error = 'title' %}
+                        <p>Title cannot be empty.</p>
+                    {% endif %}
+                    {% if error = 'content' %}
+                        <p>Content cannot be empty.</p>
+                    {% endif %}
+                    {% if error = 'categories' %}
+                        <p>Select at least 1 category.</p>
+                    {% endif %}
                 {% endfor %}
             </div>
         {% endif %}
