@@ -10,3 +10,17 @@
 .SubmitButton {
     float: right;
 }
+
+.Error {
+    padding: 0 10px 0 10px;
+    margin: 20px auto 20px auto;
+    line-height: 50px;
+    background-color: #ff9191;
+    border-radius: 10px;
+    border: 1px solid #CBCBCB;
+}
+
+.Error p {
+    padding-top: 5px;
+    line-height: 10px;
+}
