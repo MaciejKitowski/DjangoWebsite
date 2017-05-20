@@ -31,6 +31,9 @@ class CategoriesView(generic.ListView):
     model = models.Category
     paginate_by = 21
 
+class QuestionView(generic.TemplateView):
+    a = 1
+
 class NewQuestionView(generic.edit.FormView):
     template_name = 'newQuestion.html'
     form_class = forms.NewQuestionForm
@@ -41,8 +44,8 @@ class NewQuestionView(generic.edit.FormView):
         candidate.author = self.request.user
         candidate.save()
         form.save_m2m()
-        return super(NewQuestionView, self).form_valid(candidate)
-        #return render(self.request, 'login.html', self.get_context_data()) - Przenoszenie do konkretnej strony, przyda sie jak zrobie template dla pytan
+        #return super(NewQuestionView, self).form_valid(candidate)
+        return render(self.request, ('question/{0}').format(candidate.pk), self.get_context_data())
 
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
