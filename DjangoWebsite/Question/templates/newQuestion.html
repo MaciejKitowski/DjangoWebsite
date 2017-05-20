@@ -18,6 +18,14 @@
                     </div>\
                 </div>'
             );
+
+            if($( '.checkboxField' ).length > 1 && $( "a[class='btn btn-danger']" ).length == 0) {
+                $( "#CategoryButtons" ).append('<a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>');
+            }
+        }
+
+        function removeCategory() {
+
         }
     </script>
 {% endblock %}
@@ -42,7 +50,6 @@
                 <div id="categories">
                     <div id="CategoryButtons">
                         <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
-                        <a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>
                     </div>
                     <div class="checkboxField">
                         <div class="input-group">
@@ -52,7 +59,6 @@
                     </div>
                 </div>
                 <div class="SubmitButton">
-                    <a href="#" id="filldetails" onclick="addCategory()">Fill Details</a>
                     <button type="submit" class="btn btn-primary" value="login">Send</button>
                 </div>
             </form>
