@@ -38,13 +38,12 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>
                     {{ form.content }}
                 </div>
-                <h4>
-                    Categories
-                    <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
-                </h4>
+                <h4>Categories</h4>
                 <div id="categories">
-                    
-                    <hr/>
+                    <div id="CategoryButtons">
+                        <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                        <a class="btn btn-danger" onclick="removeCategory()"><i class="glyphicon glyphicon-minus-sign"></i></a>
+                    </div>
                     <div class="checkboxField">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>

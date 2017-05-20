@@ -11,6 +11,11 @@
     padding-top: 5px;
 }
 
+#CategoryButtons {
+    padding: 5px 0px 5px 0px;
+    margin: -10px 0 0 0;
+}
+
 #categories hr {
     border: 1px solid #CBCBCB;
     margin: 5px;
