@@ -32,7 +32,7 @@ class CategoriesView(generic.ListView):
     paginate_by = 21
 
 class QuestionView(generic.TemplateView):
-    a = 1
+    template_name = 'question.html'
 
 class NewQuestionView(generic.edit.FormView):
     template_name = 'newQuestion.html'
@@ -44,8 +44,7 @@ class NewQuestionView(generic.edit.FormView):
         candidate.author = self.request.user
         candidate.save()
         form.save_m2m()
-        #return super(NewQuestionView, self).form_valid(candidate)
-        return render(self.request, ('question/{0}').format(candidate.pk), self.get_context_data())
+        return super(NewQuestionView, self).form_valid(candidate)
 
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
