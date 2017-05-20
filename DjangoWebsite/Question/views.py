@@ -45,7 +45,10 @@ class NewQuestionView(generic.edit.FormView):
     success_url = '/'
     
     def form_valid(self, form):
-        return super(NewQuestionView, self).form_valid(form)
+        candidate = form.save(commit=False)
+        candidate.author = self.request.user
+        candidate.save()
+        return super(NewQuestionView, self).form_valid(candidate)
 
     def get_context_data(self, **kwargs):
         context = super(NewQuestionView, self).get_context_data(**kwargs)

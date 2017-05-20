@@ -11,6 +11,7 @@
 
 {% block content %}
     <div id="FormContent">
+        {{ form.errors }}
         {% if form.errors %}
             <div class="Error">
                 {% for error in form.errors %}

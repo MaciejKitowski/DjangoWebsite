@@ -5,6 +5,11 @@ from django import forms
 from Question import models
 
 class NewQuestionForm(forms.ModelForm):
+    author = forms.CharField(
+        label = "Author",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'author'}),
+        required = False
+    )
     title = forms.CharField(
         label = "Title",
         widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'title'})
