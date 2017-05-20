@@ -20,7 +20,6 @@
             );
         }
     </script>
-
 {% endblock %}
 
 {% block content %}
@@ -29,7 +28,7 @@
             <div class="Error">{{ form.errors }}</div>
         {% endif %}
         {% if user.is_authenticated %}
-            <h4>Add new question</h4>
+            <h3>Add new question</h3>
             <form method="post" action="{% url 'newQuestion' %}">
                 <div class="input-group">
                     <div class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></div>
@@ -39,8 +38,13 @@
                     <div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>
                     {{ form.content }}
                 </div>
-                <h5>Categories</h5>
+                <h4>
+                    Categories
+                    <a class="btn btn-primary" onclick="addCategory()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                </h4>
                 <div id="categories">
+                    
+                    <hr/>
                     <div class="checkboxField">
                         <div class="input-group">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-check"></i></div>
