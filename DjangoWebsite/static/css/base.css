@@ -39,6 +39,7 @@ body {
 
 #auth {
     float: right;
+    line-height: 42px;
 }
 
 #mainContent {
