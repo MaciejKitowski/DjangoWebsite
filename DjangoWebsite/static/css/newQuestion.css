@@ -7,6 +7,14 @@
     border: 1px solid #CBCBCB;
 }
 
+#categories {
+    padding-top: 10px;
+}
+
+.checkboxField {
+    width: 25%;
+}
+
 .SubmitButton {
     float: right;
 }
