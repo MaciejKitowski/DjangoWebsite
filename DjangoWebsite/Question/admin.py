@@ -10,6 +10,14 @@ class QuestionDisplay(admin.ModelAdmin):
 class AnswerDisplay(admin.ModelAdmin):
     list_display = ('author', 'answerDate', 'votes')
 
+class VoteDisplay(admin.ModelAdmin):
+    list_display = ('user', 'date', 'useragent', 'ip', 'vote')
+
+class ViewDisplay(admin.ModelAdmin):
+    list_display = ('user', 'date', 'useragent', 'ip')
+
 admin.site.register(Category, CategoryDisplay)
 admin.site.register(Question, QuestionDisplay)
 admin.site.register(Answer, AnswerDisplay)
+admin.site.register(Vote, VoteDisplay)
+admin.site.register(View, ViewDisplay)
