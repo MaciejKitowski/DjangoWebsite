@@ -15,6 +15,20 @@ class Category(models.Model):
         return Question.objects.filter(categories__in=[obj]).count()
     countReferences.short_description = 'References'
 
+class Vote(models.Model):
+    user = models.ForeignKey(User, blank = True)
+    date = models.DateTimeField('Date', auto_now_add=True)
+    useragent = models.TextField('User agent')
+    ip = models.TextField("IP address")
+    vote = models.PositiveIntegerField("Vote")
+
+    class Meta:
+        verbose_name = 'Vote'
+        verbose_name_plural = 'Votes'
+    
+    def __unicode__(self):
+        return self.date.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.ip + " | " + self.vote
+
 class Answer(models.Model):
     author = models.ForeignKey(User)
     answerDate = models.DateTimeField('Answer Date', auto_now_add=True)
@@ -27,6 +41,19 @@ class Answer(models.Model):
 
     def __unicode__(self):
         return self.answerDate.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.content
+
+class View(models.Model):
+    user = models.ForeignKey(User, blank = True)
+    date = models.DateTimeField('Date', auto_now_add=True)
+    useragent = models.TextField('User agent')
+    ip = models.TextField("IP address")
+
+    class Meta:
+        verbose_name = 'View'
+        verbose_name_plural = 'Views'
+    
+    def __unicode__(self):
+        return self.date.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.ip
 
 class Question(models.Model):
     author = models.ForeignKey(User)
