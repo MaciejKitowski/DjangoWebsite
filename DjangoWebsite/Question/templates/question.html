@@ -29,23 +29,11 @@
                     </div>
                 </td>
                 <td class="questionDetails">
-                    Szczegóły pytania
+                    <div class="author"> Author: {{ question.author }} </div>
+                    <div class="date"> Date: {{ question.askDate|date:'Y-m-d H:i' }} </div>
                 </td>
             </tr>
         </table>
-
-        <!--<div id="title">
-            {{ question.title }}
-        </div>
-        <div id="questionVote">
-            
-        </div>
-        <div id="content">
-            {{ question.content }}
-        </div>
-        <div id="questionDetails">
-            Szczegóły pytania
-        </div>-->
     </div>
 <br/>
 <br/>
