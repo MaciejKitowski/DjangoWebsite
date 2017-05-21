@@ -37,16 +37,7 @@ class QuestionView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(QuestionView, self).get_context_data(**kwargs)
-        #context['question'] = timezone.now()
         return context
-
-
-
-
-    #def get_queryset(self):
-        #qr = super(QuestionView, self).get_queryset()
-        #qr = qr.filter(pk = self.kwargs['questionID'])
-        #return qr
 
 class NewQuestionView(generic.edit.FormView):
     template_name = 'newQuestion.html'
