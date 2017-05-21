@@ -51,8 +51,19 @@
     <div id="answers">
         {% for ans in question.answers.all %}
             <table>
+                {% if ans.getRating <= -5 %}
+                <tr class="lowVote">
+                {% else %}
+                
+                {% endif %}
                 <tr>
-                    <td class="votes">
+                    {% if ans.getRating <= -5 %}
+                        <td class="votes lowVote">
+                    {% elif ans.getRating >= 5 %}
+                        <td class="votes highVote">
+                    {% else %}
+                        <td class="votes">
+                    {% endif %}
                         {% if user.is_authenticated %}
                             <form method="post" action="">
                                 {% csrf_token %}
@@ -71,10 +82,22 @@
                             </form>
                         {% endif %}
                     </td>
-                    <td class="content">
+                    {% if ans.getRating <= -5 %}
+                        <td class="content lowVote">
+                    {% elif ans.getRating >= 5 %}
+                        <td class="content highVote">
+                    {% else %}
+                        <td class="content">
+                    {% endif %}
                         {{ ans.content }}
                     </td>
-                    <td class="details">
+                    {% if ans.getRating <= -5 %}
+                        <td class="details lowVote">
+                    {% elif ans.getRating >= 5 %}
+                        <td class="details highVote">
+                    {% else %}
+                        <td class="details">
+                    {% endif %}
                         <div class="author"> Author: {{ ans.author }} </div>
                         <div class="date"> Date: {{ ans.answerDate|date:'Y-m-d H:i' }} </div>
                     </td>
