@@ -36,6 +36,14 @@ class QuestionView(generic.DetailView):
     template_name = 'question.html'
     model = models.Question
 
+    def getIP(self):
+        x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[-1].strip()
+        else:
+            ip = self.request.META.get('REMOTE_ADDR')
+        return ip
+
     def post(self, request, *args, **kwargs):
         if 'answer' in request.POST:
             ans = models.Answer.objects.create(author=request.user, content = request.POST['answer'])
@@ -43,6 +51,13 @@ class QuestionView(generic.DetailView):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
     def get_context_data(self, **kwargs):
+        agent = self.request.META.get('HTTP_USER_AGENT')
+        if self.request.user.is_authenticated():
+            view = models.View.objects.create(user = self.request.user, useragent = agent, ip = self.getIP() )
+        else:
+            view = models.View.objects.create(useragent = agent, ip = self.getIP() )
+        models.Question.objects.get(pk=self.kwargs['pk']).views.add(view)
+
         context = super(QuestionView, self).get_context_data(**kwargs)
         return context
 
