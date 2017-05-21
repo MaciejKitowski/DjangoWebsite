@@ -53,4 +53,23 @@
             </table>
         {% endfor %}
     </div>
+    <div id="answerForm">
+        <h4>Add answer</h4>
+        {% if user.is_authenticated %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>
+                    <textarea class="form-control" rows="2" id="answer"></textarea>
+                </div>
+                <div class="SubmitButton">
+                    <button type="submit" class="btn btn-primary" value="login">Send</button>
+                </div>
+            </form>
+
+
+        {% else %}
+            <div class="Error"> You have to be logged.</div>
+        {% endif %}
+    </div>
 {% endblock %}
