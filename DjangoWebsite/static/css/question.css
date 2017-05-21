@@ -1,5 +1,4 @@
 #question {
-    /*border-bottom: 2px solid #B5B5B5;*/
     padding-bottom: 5px;
 }
 
@@ -28,6 +27,7 @@
 
 #mainContent td{
     text-align: left;
+    border-radius: 5px;
 }
 
 #mainContent td.votes {
