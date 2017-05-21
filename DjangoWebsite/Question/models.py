@@ -19,8 +19,8 @@ class Category(models.Model):
 class Vote(models.Model):
     user = models.ForeignKey(User, blank = True)
     date = models.DateTimeField('Date', auto_now_add=True)
-    useragent = models.TextField('User agent')
-    ip = models.TextField("IP address")
+    useragent = models.TextField('User agent', blank = True, null = True)
+    ip = models.TextField("IP address", blank = True, null = True)
     vote = models.IntegerField("Vote")
 
     class Meta:
@@ -54,8 +54,8 @@ class Answer(models.Model):
 class View(models.Model):
     user = models.ForeignKey(User, blank = True, null = True)
     date = models.DateTimeField('Date', auto_now_add=True)
-    useragent = models.TextField('User agent')
-    ip = models.TextField("IP address")
+    useragent = models.TextField('User agent', blank = True, null = True)
+    ip = models.TextField("IP address", blank = True, null = True)
 
     class Meta:
         verbose_name = 'View'
