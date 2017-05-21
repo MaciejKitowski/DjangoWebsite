@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.http import HttpResponseRedirect
 from django.db.models import Count
 from Question import models, forms
 from django.contrib.auth import authenticate, login
@@ -35,6 +36,12 @@ class QuestionView(generic.DetailView):
     template_name = 'question.html'
     model = models.Question
 
+    def post(self, request, *args, **kwargs):
+        if 'answer' in request.POST:
+            ans = models.Answer.objects.create(author=request.user, content = request.POST['answer'])
+            models.Question.objects.get(pk=self.kwargs['pk']).answers.add(ans)
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        
     def get_context_data(self, **kwargs):
         context = super(QuestionView, self).get_context_data(**kwargs)
         return context
