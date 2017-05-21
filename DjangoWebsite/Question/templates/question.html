@@ -17,9 +17,21 @@
         <table>
             <tr>
                 <td class="votes">
-                    <i class="glyphicon glyphicon-chevron-up voteMark"></i><br/>
-                    {{ question.getRating }}</br>
-                    <i class="glyphicon glyphicon-chevron-down voteMark"></i> 
+                    {% if user.is_authenticated %}
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="vote" value="1">
+                            <button type="submit" class="btn btn-success btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                        </form>
+                    {% endif %}
+                    {{ question.getRating }}
+                    {% if user.is_authenticated %}
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <input type="hidden" name="vote" value="-1">
+                            <button type="submit" class="btn btn-danger btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                        </form>
+                    {% endif %}
                 </td>
                 <td class="content">
                     {{ question.content }}
@@ -41,9 +53,21 @@
             <table>
                 <tr>
                     <td class="votes">
-                        <i class="glyphicon glyphicon-chevron-up voteMark"></i><br/>
+                        {% if user.is_authenticated %}
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <input type="hidden" name="vote" value="1">
+                                <button type="submit" class="btn btn-success btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                            </form>
+                        {% endif %}
                         {{ ans.getRating }}<br/>
-                        <i class="glyphicon glyphicon-chevron-down voteMark"></i> 
+                        {% if user.is_authenticated %}
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <input type="hidden" name="vote" value="-1">
+                                <button type="submit" class="btn btn-danger btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                            </form>
+                        {% endif %}
                     </td>
                     <td class="content">
                         {{ ans.content }}
@@ -67,11 +91,9 @@
                     <textarea class="form-control" rows="2" name="answer"></textarea>
                 </div>
                 <div class="SubmitButton">
-                    <button type="submit" class="btn btn-primary" value="login">Send</button>
+                    <button type="submit" class="btn btn-primary" value="send">Send</button>
                 </div>
             </form>
-
-
         {% else %}
             <div class="Error"> You have to be logged.</div>
         {% endif %}
