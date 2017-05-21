@@ -20,7 +20,10 @@ class Vote(models.Model):
     date = models.DateTimeField('Date', auto_now_add=True)
     useragent = models.TextField('User agent')
     ip = models.TextField("IP address")
-    vote = models.PositiveIntegerField("Vote")
+    vote = models.IntegerField("Vote")
+
+    def getAnswerRating(obj):
+        return Answer.objects.filter(votes__in=[obj]).aggregate(Sum('vote')).get('vote__sum', 0)
 
     class Meta:
         verbose_name = 'Vote'
@@ -33,7 +36,11 @@ class Answer(models.Model):
     author = models.ForeignKey(User)
     answerDate = models.DateTimeField('Answer Date', auto_now_add=True)
     content = models.TextField('Content')
-    votes = models.IntegerField('Votes', default=0)
+    votes = models.ManyToManyField(Vote, verbose_name = 'Votes', blank = True)
+
+    def getRating(self):
+        return 0
+    getRating.short_description = 'Votes'
 
     class Meta:
         verbose_name = 'Answer'

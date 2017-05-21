@@ -8,7 +8,7 @@ class QuestionDisplay(admin.ModelAdmin):
     list_display = ('title', 'author', 'askDate', 'views', 'votes')
 
 class AnswerDisplay(admin.ModelAdmin):
-    list_display = ('author', 'answerDate', 'votes')
+    list_display = ('author', 'answerDate', 'getRating')
 
 class VoteDisplay(admin.ModelAdmin):
     list_display = ('user', 'date', 'useragent', 'ip', 'vote')
