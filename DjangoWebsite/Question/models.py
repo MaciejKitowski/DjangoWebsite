@@ -37,7 +37,10 @@ class Answer(models.Model):
     votes = models.ManyToManyField(Vote, verbose_name = 'Votes', blank = True)
 
     def getRating(self):
-        return self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0)
+        if self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0) is None:
+            return 0
+        else:
+            return self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0)
 
     getRating.short_description = 'Votes'
 

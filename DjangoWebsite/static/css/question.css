@@ -32,6 +32,9 @@
 
 #mainContent td.votes {
     width: 10%;
+    vertical-align: middle;
+    align-content: center;
+    text-align: center;
     padding: 5px 5px 5px 5px;
     background-color: #F8F8F8;
 }
