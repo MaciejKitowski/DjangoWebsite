@@ -16,24 +16,42 @@
         </div>
         <table>
             <tr>
-                <td class="questionVote">
+                <td class="votes">
                     Miejsce na ocenę pytania
                 </td>
                 <td class="content">
                     {{ question.content }}
-
                     <div id="questionCategories">
                         {% for cat in question.categories.all %}
                             <a href = "/category/{{ cat }}/1" class = "category">{{ cat }}</a>
                         {% endfor %}
                     </div>
                 </td>
-                <td class="questionDetails">
+                <td class="details">
                     <div class="author"> Author: {{ question.author }} </div>
                     <div class="date"> Date: {{ question.askDate|date:'Y-m-d H:i' }} </div>
                 </td>
             </tr>
         </table>
+    </div>
+    <div id="answers">
+        {% for ans in question.answers.all %}
+            <table>
+                <tr>
+                    <td class="votes">
+                        Miejsce na ocenę pytania
+                    </td>
+                    <td class="content">
+                        {{ ans.content }}
+                    </td>
+                    <td class="details">
+                        <div class="author"> Author: {{ ans.author }} </div>
+                        <div class="date"> Date: {{ ans.answerDate|date:'Y-m-d H:i' }} </div>
+                    </td>
+                </tr>
+                <hr/>
+            </table>
+        {% endfor %}
     </div>
 <br/>
 <br/>
