@@ -17,7 +17,9 @@
         <table>
             <tr>
                 <td class="votes">
-                    {{ question.getRating }}
+                    <i class="glyphicon glyphicon-chevron-up voteMark"></i><br/>
+                    {{ question.getRating }}</br>
+                    <i class="glyphicon glyphicon-chevron-down voteMark"></i> 
                 </td>
                 <td class="content">
                     {{ question.content }}
@@ -39,7 +41,9 @@
             <table>
                 <tr>
                     <td class="votes">
-                        {{ ans.getRating }}
+                        <i class="glyphicon glyphicon-chevron-up voteMark"></i><br/>
+                        {{ ans.getRating }}<br/>
+                        <i class="glyphicon glyphicon-chevron-down voteMark"></i> 
                     </td>
                     <td class="content">
                         {{ ans.content }}
