@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth.models import User
 
 class Category(models.Model):
@@ -22,15 +23,12 @@ class Vote(models.Model):
     ip = models.TextField("IP address")
     vote = models.IntegerField("Vote")
 
-    def getAnswerRating(obj):
-        return Answer.objects.filter(votes__in=[obj]).aggregate(Sum('vote')).get('vote__sum', 0)
-
     class Meta:
         verbose_name = 'Vote'
         verbose_name_plural = 'Votes'
     
     def __unicode__(self):
-        return self.date.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.ip + " | " + self.vote
+        return self.date.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.ip + " | " + ("{0}").format(self.vote)
 
 class Answer(models.Model):
     author = models.ForeignKey(User)
@@ -39,7 +37,8 @@ class Answer(models.Model):
     votes = models.ManyToManyField(Vote, verbose_name = 'Votes', blank = True)
 
     def getRating(self):
-        return 0
+        return self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0)
+
     getRating.short_description = 'Votes'
 
     class Meta:
