@@ -20,7 +20,7 @@
                     {% if user.is_authenticated %}
                         <form method="post" action="">
                             {% csrf_token %}
-                            <input type="hidden" name="vote" value="1">
+                            <input type="hidden" name="questionVote" value="1">
                             <button type="submit" class="btn btn-success btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-up"></i></button>
                         </form>
                     {% endif %}
@@ -28,7 +28,7 @@
                     {% if user.is_authenticated %}
                         <form method="post" action="">
                             {% csrf_token %}
-                            <input type="hidden" name="vote" value="-1">
+                            <input type="hidden" name="questionVote" value="-1">
                             <button type="submit" class="btn btn-danger btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-down"></i></button>
                         </form>
                     {% endif %}
@@ -56,7 +56,8 @@
                         {% if user.is_authenticated %}
                             <form method="post" action="">
                                 {% csrf_token %}
-                                <input type="hidden" name="vote" value="1">
+                                <input type="hidden" name="answerVote" value="1">
+                                <input type="hidden" name="pk" value="{{ ans.pk }}">
                                 <button type="submit" class="btn btn-success btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-up"></i></button>
                             </form>
                         {% endif %}
@@ -64,7 +65,8 @@
                         {% if user.is_authenticated %}
                             <form method="post" action="">
                                 {% csrf_token %}
-                                <input type="hidden" name="vote" value="-1">
+                                <input type="hidden" name="answerVote" value="-1">
+                                <input type="hidden" name="pk" value="{{ ans.pk }}">
                                 <button type="submit" class="btn btn-danger btn-sm" value="submit"><i class="glyphicon glyphicon-chevron-down"></i></button>
                             </form>
                         {% endif %}

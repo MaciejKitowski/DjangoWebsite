@@ -45,6 +45,16 @@ class QuestionView(generic.DetailView):
         return ip
 
     def post(self, request, *args, **kwargs):
+        if 'answerVote' in request.POST:
+            agent = self.request.META.get('HTTP_USER_AGENT')
+            vot = models.Vote.objects.create(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['answerVote'])
+            models.Answer.objects.get(pk=request.POST['pk']).votes.add(vot)
+
+        if 'questionVote' in request.POST:
+            agent = self.request.META.get('HTTP_USER_AGENT')
+            vot = models.Vote.objects.create(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['questionVote'])
+            models.Question.objects.get(pk=self.kwargs['pk']).votes.add(vot)
+
         if 'answer' in request.POST:
             ans = models.Answer.objects.create(author=request.user, content = request.POST['answer'])
             models.Question.objects.get(pk=self.kwargs['pk']).answers.add(ans)
