@@ -57,11 +57,11 @@
         {% for question in questions %}
             <tr>
                 <td class="votes">
-                    {{ question.votes }} <br/>
+                    {{ question.getRating }} <br/>
                     <small>Votes</small>
                 </td>
                 <td class="views">
-                    {{ question.views }} <br/>
+                    {{ question.getViews }} <br/>
                     <small>Views</small>
                 </td>
                 <td class ="answers">

@@ -5,7 +5,7 @@ class CategoryDisplay(admin.ModelAdmin):
     list_display = ('name', 'countReferences' )
 
 class QuestionDisplay(admin.ModelAdmin):
-    list_display = ('title', 'author', 'askDate', 'views', 'votes')
+    list_display = ('title', 'author', 'askDate', 'getRating', 'getViews')
 
 class AnswerDisplay(admin.ModelAdmin):
     list_display = ('author', 'answerDate', 'getRating')

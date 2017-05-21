@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.contrib.auth.models import User
 
 class Category(models.Model):
@@ -52,7 +52,7 @@ class Answer(models.Model):
         return self.answerDate.strftime("%Y-%m-%d %H:%M:%S") + " | " + self.content
 
 class View(models.Model):
-    user = models.ForeignKey(User, blank = True)
+    user = models.ForeignKey(User, blank = True, null = True)
     date = models.DateTimeField('Date', auto_now_add=True)
     useragent = models.TextField('User agent')
     ip = models.TextField("IP address")
@@ -69,10 +69,22 @@ class Question(models.Model):
     title = models.CharField('Title', max_length = 255)
     askDate = models.DateTimeField('Ask Date', auto_now_add=True)
     content = models.TextField('Content')
-    views = models.PositiveIntegerField('Views', default=0)
-    votes = models.IntegerField('Votes', default=0)
     categories = models.ManyToManyField(Category, verbose_name = 'Categories', blank = True)
     answers = models.ManyToManyField(Answer, verbose_name = 'Answers', blank = True)
+    views = models.ManyToManyField(View, verbose_name = 'Views', blank = True)
+    votes  = models.ManyToManyField(Vote, verbose_name = 'Votes', blank = True)
+
+    def getRating(self):
+        if self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0) is None:
+            return 0
+        else:
+            return self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0)
+    
+    def getViews(self):
+        return self.views.all().count()
+
+    getRating.short_description = 'Votes'
+    getViews.short_description = 'Views'
 
     class Meta:
         verbose_name = 'Question'
