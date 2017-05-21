@@ -47,15 +47,15 @@ class QuestionView(generic.DetailView):
     def post(self, request, *args, **kwargs):
         if 'answerVote' in request.POST:
             agent = self.request.META.get('HTTP_USER_AGENT')
-
             vot = models.Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['answerVote'])
             if models.Answer.objects.get(pk=request.POST['pk']).isAuthorVote(vot) == False:
                 models.Answer.objects.get(pk=request.POST['pk']).saveOrUpdateVote(vot)
 
         if 'questionVote' in request.POST:
             agent = self.request.META.get('HTTP_USER_AGENT')
-            vot = models.Vote.objects.create(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['questionVote'])
-            models.Question.objects.get(pk=self.kwargs['pk']).votes.add(vot)
+            vot = models.Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['questionVote'])
+            if models.Question.objects.get(pk=self.kwargs['pk']).isAuthorVote(vot) == False:
+                models.Question.objects.get(pk=self.kwargs['pk']).saveOrUpdateVote(vot)
 
         if 'answer' in request.POST:
             ans = models.Answer.objects.create(author=request.user, content = request.POST['answer'])

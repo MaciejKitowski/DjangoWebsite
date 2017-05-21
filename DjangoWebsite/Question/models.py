@@ -93,6 +93,25 @@ class Question(models.Model):
     views = models.ManyToManyField(View, verbose_name = 'Views', blank = True)
     votes  = models.ManyToManyField(Vote, verbose_name = 'Votes', blank = True)
 
+    def isAuthorVote(self, vote):
+        if vote.user == self.author:
+            return True
+        else:
+            return False
+    
+    def saveOrUpdateVote(self, vote):
+        if self.votes.filter(user = vote.user).count() == 0:
+            vote.save()
+            self.votes.add(vote)
+        else:
+            obj = self.votes.get(user = vote.user)
+
+            if obj.vote != vote.vote:
+                obj.useragent = vote.useragent
+                obj.ip = vote.ip
+                obj.vote = vote.vote
+                obj.save()
+
     def getRating(self):
         if self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0) is None:
             return 0
