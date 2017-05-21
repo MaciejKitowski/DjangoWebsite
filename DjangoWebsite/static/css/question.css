@@ -41,6 +41,29 @@
     vertical-align: top;
 }
 
+#questionCategories {
+    border-top: 1px solid #BBBBBB;
+    margin: 15px 20px 5px 20px;
+    padding: 5px 5px 5px 5px;
+}
+
+#questionCategories a.category {
+    display:inline-block;
+    margin-top: 3px;
+    margin-right: 2px;
+    padding: 1px 5px 1px 5px;
+    background-color: #BBBBBB;
+    text-decoration: none;
+    color: black;
+    font-size: 70%;
+}
+
+#questionCategories a.category:hover {
+    background-color: #D6D6D6;
+    padding: 0px 4px 0px 4px;
+    border: 1px solid #9E9E9E;
+}
+
 #question td.questionDetails {
     width: 20%;
     padding: 5px 5px 5px 5px;

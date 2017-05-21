@@ -21,6 +21,12 @@
                 </td>
                 <td class="content">
                     {{ question.content }}
+
+                    <div id="questionCategories">
+                        {% for cat in question.categories.all %}
+                            <a href = "/category/{{ cat }}/1" class = "category">{{ cat }}</a>
+                        {% endfor %}
+                    </div>
                 </td>
                 <td class="questionDetails">
                     Szczegóły pytania
