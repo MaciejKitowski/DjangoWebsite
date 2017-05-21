@@ -2,13 +2,47 @@
 {% load staticfiles %}
 
 {% block title %}
-    Register page
+    {{ question.title }} | Ask a question
 {% endblock %}
 
 {% block CSS %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
 {% endblock %}
 
 {% block content %}
+    <div id="question">
+        <div id="title">
+            {{ question.title }}
+        </div>
+        <table>
+            <tr>
+                <td class="questionVote">
+                    Miejsce na ocenę pytania
+                </td>
+                <td class="content">
+                    {{ question.content }}
+                </td>
+                <td class="questionDetails">
+                    Szczegóły pytania
+                </td>
+            </tr>
+        </table>
 
+        <!--<div id="title">
+            {{ question.title }}
+        </div>
+        <div id="questionVote">
+            
+        </div>
+        <div id="content">
+            {{ question.content }}
+        </div>
+        <div id="questionDetails">
+            Szczegóły pytania
+        </div>-->
+    </div>
+<br/>
+<br/>
+<br/>
+<br/>
 {% endblock %}

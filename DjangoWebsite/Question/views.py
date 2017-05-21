@@ -31,8 +31,22 @@ class CategoriesView(generic.ListView):
     model = models.Category
     paginate_by = 21
 
-class QuestionView(generic.TemplateView):
+class QuestionView(generic.DetailView):
     template_name = 'question.html'
+    model = models.Question
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionView, self).get_context_data(**kwargs)
+        #context['question'] = timezone.now()
+        return context
+
+
+
+
+    #def get_queryset(self):
+        #qr = super(QuestionView, self).get_queryset()
+        #qr = qr.filter(pk = self.kwargs['questionID'])
+        #return qr
 
 class NewQuestionView(generic.edit.FormView):
     template_name = 'newQuestion.html'
