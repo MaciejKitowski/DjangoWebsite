@@ -69,7 +69,7 @@
                     <small>Answers</small>
                 </td>
                 <td class="question">
-                    {{ question.title }} <br/>
+                    <a href="question/{{ question.pk }}">{{ question.title }}</a> <br/>
                     {% for cat in question.categories.all %}
                         <a href = "/category/{{ cat }}/1" class = "category">{{ cat }}</a>
                     {% endfor %}
