@@ -11,10 +11,10 @@
 
 {% block content %}
     <div id="FormContent">
-        {{ form.errors }}
         {% if form.errors %}
             <div class="Error">
-                {% for error in form.errors %}
+                {{ form.errors }}
+                <!--{% for error in form.errors %}
                     {% if error = 'title' %}
                         <p>Title cannot be empty.</p>
                     {% endif %}
@@ -23,7 +23,7 @@
                     {% endif %}
                     {% if error = 'categories' %}
                         <p>Select at least 1 category.</p>
-                    {% endif %}
+                    {% endif %}-->
                 {% endfor %}
             </div>
         {% endif %}
