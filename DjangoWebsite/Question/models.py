@@ -112,6 +112,9 @@ class Question(models.Model):
                 obj.vote = vote.vote
                 obj.save()
 
+    def getAnswerCount(self):
+        return self.answers.all().count()
+
     def getRating(self):
         if self.votes.all().aggregate(Sum('vote')).get('vote__sum', 0) is None:
             return 0

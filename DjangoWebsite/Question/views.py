@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponseRedirect
-from django.db.models import Count
+from django.db.models import Count, Sum
+from django.db.models.functions import Coalesce
 from Question import models, forms
 from django.contrib.auth import authenticate, login
 
@@ -12,15 +13,21 @@ class IndexView(generic.ListView):
     paginate_by = 13
 
     def get_queryset(self):
-        sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votes', 'votes-desc':'-votes', 'views-asc':'views', 'views-desc':'-views', 'answers-asc':'answersCount', 'answers-desc':'-answersCount' }
+        sortbyColumn = {'date-asc':'askDate', 'date-desc':'-askDate', 'votes-asc':'votesSum', 'votes-desc':'-votesSum', 'views-asc':'viewsCount', 'views-desc':'-viewsCount', 'answers-asc':'answersCount', 'answers-desc':'-answersCount' }
         qr = super(IndexView, self).get_queryset()
-        qr = qr.annotate(answersCount=Count('answers'))
 
         if 'category' in self.kwargs:
             qr = qr.filter(categories__name__iexact = self.kwargs['category'])
 
         if 'sortby' in self.kwargs and self.kwargs['sortby'] in sortbyColumn:
-            qr = qr.order_by(sortbyColumn[self.kwargs['sortby']])
+            if self.kwargs['sortby'] == 'votes-asc' or self.kwargs['sortby'] == 'votes-desc':
+                qr = qr.annotate(votesSum=Coalesce(Sum('votes__vote'), 0)).order_by(sortbyColumn[self.kwargs['sortby']])
+            elif self.kwargs['sortby'] == 'views-asc' or self.kwargs['sortby'] == 'views-desc':
+                qr = qr.annotate(viewsCount=Count('views', distinct=True)).order_by(sortbyColumn[self.kwargs['sortby']])
+            elif self.kwargs['sortby'] == 'answers-asc' or self.kwargs['sortby'] == 'answers-desc':
+                qr = qr.annotate(answersCount=Count('views', distinct=True)).order_by(sortbyColumn[self.kwargs['sortby']])
+            else:
+                qr = qr.order_by(sortbyColumn[self.kwargs['sortby']])
         else:
             qr = qr.order_by(sortbyColumn['date-desc'])
 
