@@ -94,7 +94,6 @@
                             {% if user == ans.author or user.is_staff and perms.question.can_change_question %}
                                 <a href="{% url 'edit_answer' pk=ans.pk %}"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
                             {% endif %}
-
                             <a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Report</a>
                             {% if user == ans.author or user.is_staff and perms.question.can_change_question %}
                                 <a href="#"><i class="glyphicon glyphicon-remove"></i> Remove</a>
