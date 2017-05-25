@@ -94,7 +94,7 @@ class NewQuestionView(generic.edit.FormView):
         return super(NewQuestionView, self).form_valid(candidate)
 
 class EditAnswerView(generic.edit.UpdateView):
-    template_name = 'edit_answer.html'
+    template_name = 'modify/edit_answer.html'
     form_class = forms.EditAnswerForm
     success_url = '/'
     model = models.Answer
@@ -112,13 +112,13 @@ class EditAnswerView(generic.edit.UpdateView):
         return context
 
 class EditQuestionView(generic.edit.UpdateView):
-    template_name = "edit_question.html"
+    template_name = "modify/edit_question.html"
     form_class = forms.NewQuestionForm
     model = models.Question
     success_url = '/'
 
 class DeleteQuestionView(generic.edit.DeleteView):
-    template_name = 'delete_question.html'
+    template_name = 'modify/delete_question.html'
     model = models.Question
     success_url = '/'
 
@@ -137,7 +137,7 @@ class DeleteQuestionView(generic.edit.DeleteView):
             return super(DeleteQuestionView, self).post(request, *args, **kwargs)
 
 class DeleteAnswerView(generic.edit.DeleteView):
-    template_name = 'delete_answer.html'
+    template_name = 'modify/delete_answer.html'
     model = models.Answer
     success_url = '/'
 
