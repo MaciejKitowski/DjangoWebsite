@@ -6,17 +6,20 @@
 {% endblock %}
 
 {% block CSS %}
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        <div class="input-group">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></div>
-            {{ form.content }}
-        </div>
-        <div class="SubmitButton">
-            <button type="submit" class="btn btn-primary" value="send">Send</button>
-        </div>
-    </form>
+    <div id="editAnswer">
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></div>
+                {{ form.content }}
+            </div>
+            <div class="SubmitButton">
+                <button type="submit" class="btn btn-primary" value="send">Send</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

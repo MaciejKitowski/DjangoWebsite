@@ -1,0 +1,13 @@
+#editAnswer {
+    width: 65%;
+    padding: 15px 15px 35px 15px;
+    margin: 10px auto 10px auto;
+    border-radius: 10px;
+    background-color: #E3E3E3;
+    border: 1px solid #CBCBCB;
+}
+
+.SubmitButton {
+    padding-top: 5px;
+    float: right;
+}
