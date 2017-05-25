@@ -126,6 +126,7 @@
 
 .options a {
     color: #909090;
+    padding: 0px 5px 0px 5px;
 }
 
 .options a:hover {
