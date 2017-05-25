@@ -91,7 +91,7 @@
                     {% endif %}
                         {{ ans.content }}
                         <div class="options">
-                            Options
+                            <a href="#{{ forloop.counter }}"><i class="glyphicon glyphicon-transfer"></i> Link</a>
                         </div>
                     </td>
                     {% if ans.getRating <= -5 %}
