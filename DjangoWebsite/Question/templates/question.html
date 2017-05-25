@@ -56,7 +56,7 @@
                 {% else %}
                 
                 {% endif %}
-                <tr>
+                <tr id="{{ forloop.counter }}">
                     {% if ans.getRating <= -5 %}
                         <td class="votes lowVote">
                     {% elif ans.getRating >= 5 %}
