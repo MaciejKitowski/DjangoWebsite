@@ -151,7 +151,7 @@ class DeleteAnswerView(generic.edit.DeleteView):
             return super(DeleteAnswerView, self).post(request, *args, **kwargs)
 
 class RegisterView(generic.edit.FormView):
-    template_name = 'register.html'
+    template_name = 'auth/register.html'
     form_class = forms.RegisterForm
     success_url = '/'
 

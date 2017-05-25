@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^edit/question/(?P<pk>[\d]+)', views.EditQuestionView.as_view(), name='edit_question'),
     url(r'^delete/answer/(?P<pk>[\d]+)', views.DeleteAnswerView.as_view(), name='delete_answer'),
     url(r'^delete/question/(?P<pk>[\d]+)', views.DeleteQuestionView.as_view(), name='delete_question'),
-    url(r'^login/$', auth_view.login, {'template_name': 'login.html', 'authentication_form': forms.LoginForm}),
+    url(r'^login/$', auth_view.login, {'template_name': 'auth/login.html', 'authentication_form': forms.LoginForm}),
     url(r'^logout/$', auth_view.logout, kwargs={'next_page': '/'}),
     url(r'^register/$', views.RegisterView.as_view()),
 ]
