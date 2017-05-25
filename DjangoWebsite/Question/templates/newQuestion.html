@@ -14,17 +14,6 @@
         {% if form.errors %}
             <div class="Error">
                 {{ form.errors }}
-                <!--{% for error in form.errors %}
-                    {% if error = 'title' %}
-                        <p>Title cannot be empty.</p>
-                    {% endif %}
-                    {% if error = 'content' %}
-                        <p>Content cannot be empty.</p>
-                    {% endif %}
-                    {% if error = 'categories' %}
-                        <p>Select at least 1 category.</p>
-                    {% endif %}-->
-                {% endfor %}
             </div>
         {% endif %}
         {% if user.is_authenticated %}
