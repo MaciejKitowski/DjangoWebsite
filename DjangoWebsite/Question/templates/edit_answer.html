@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block CSS %}
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
     <link rel="stylesheet" href="{% static 'css/edit.css' %}">
 {% endblock %}
 
 {% block content %}
     <div id="question">
-        <div class ="title">{{ question.title }}</div>
+        <div id="title">{{ question.title }}</div>
         <table>
             <tr>
                 <td class="votes"> {{ question.getRating }} </td>
