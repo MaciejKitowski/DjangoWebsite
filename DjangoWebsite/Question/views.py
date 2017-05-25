@@ -1,16 +1,17 @@
-from django.shortcuts import render
-from django.views import generic
-from django.http import HttpResponseRedirect
+import Question.forms as fr
 from django.db.models import Count, Sum
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.db.models.functions import Coalesce
-from Question import models, forms
 from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect
+from django.views.generic import ListView, DetailView
+from Question.models import Category, Vote, Answer, View, Question
+from django.views.generic.edit import FormView, DeleteView, UpdateView
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'main/index.html'
     context_object_name = 'questions'
-    model = models.Question
+    model = Question
     paginate_by = 13
 
     def get_queryset(self):
@@ -34,15 +35,15 @@ class IndexView(generic.ListView):
 
         return qr
 
-class CategoriesView(generic.ListView):
+class CategoriesView(ListView):
     template_name = 'main/categories.html'
     context_object_name = 'categories'
-    model = models.Category
+    model = Category
     paginate_by = 21
 
-class QuestionView(generic.DetailView):
+class QuestionView(DetailView):
     template_name = 'main/question.html'
-    model = models.Question
+    model = Question
 
     def getIP(self):
         x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
@@ -55,35 +56,35 @@ class QuestionView(generic.DetailView):
     def post(self, request, *args, **kwargs):
         if 'answerVote' in request.POST:
             agent = self.request.META.get('HTTP_USER_AGENT')
-            vot = models.Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['answerVote'])
-            if models.Answer.objects.get(pk=request.POST['pk']).isAuthorVote(vot) == False:
-                models.Answer.objects.get(pk=request.POST['pk']).saveOrUpdateVote(vot)
+            vot = Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['answerVote'])
+            if Answer.objects.get(pk=request.POST['pk']).isAuthorVote(vot) == False:
+                Answer.objects.get(pk=request.POST['pk']).saveOrUpdateVote(vot)
 
         if 'questionVote' in request.POST:
             agent = self.request.META.get('HTTP_USER_AGENT')
-            vot = models.Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['questionVote'])
-            if models.Question.objects.get(pk=self.kwargs['pk']).isAuthorVote(vot) == False:
-                models.Question.objects.get(pk=self.kwargs['pk']).saveOrUpdateVote(vot)
+            vot = Vote(user = request.user, useragent = agent, ip = self.getIP(), vote = request.POST['questionVote'])
+            if Question.objects.get(pk=self.kwargs['pk']).isAuthorVote(vot) == False:
+                Question.objects.get(pk=self.kwargs['pk']).saveOrUpdateVote(vot)
 
         if 'answer' in request.POST:
-            ans = models.Answer.objects.create(author=request.user, content = request.POST['answer'])
-            models.Question.objects.get(pk=self.kwargs['pk']).answers.add(ans)
+            ans = Answer.objects.create(author=request.user, content = request.POST['answer'])
+            Question.objects.get(pk=self.kwargs['pk']).answers.add(ans)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         
     def get_context_data(self, **kwargs):
         agent = self.request.META.get('HTTP_USER_AGENT')
         if self.request.user.is_authenticated():
-            view = models.View.objects.create(user = self.request.user, useragent = agent, ip = self.getIP() )
+            view = View.objects.create(user = self.request.user, useragent = agent, ip = self.getIP() )
         else:
-            view = models.View.objects.create(useragent = agent, ip = self.getIP() )
-        models.Question.objects.get(pk=self.kwargs['pk']).views.add(view)
+            view = View.objects.create(useragent = agent, ip = self.getIP() )
+        Question.objects.get(pk=self.kwargs['pk']).views.add(view)
 
         context = super(QuestionView, self).get_context_data(**kwargs)
         return context
 
-class NewQuestionView(generic.edit.FormView):
+class NewQuestionView(FormView):
     template_name = 'main/newQuestion.html'
-    form_class = forms.NewQuestionForm
+    form_class = fr.NewQuestionForm
     success_url = '/'
     
     def form_valid(self, form):
@@ -93,15 +94,15 @@ class NewQuestionView(generic.edit.FormView):
         form.save_m2m()
         return super(NewQuestionView, self).form_valid(candidate)
 
-class EditQuestionView(generic.edit.UpdateView):
+class EditQuestionView(UpdateView):
     template_name = "modify/edit_question.html"
-    form_class = forms.NewQuestionForm
-    model = models.Question
+    form_class = fr.NewQuestionForm
+    model = Question
     success_url = '/'
 
-class DeleteQuestionView(generic.edit.DeleteView):
+class DeleteQuestionView(DeleteView):
     template_name = 'modify/delete_question.html'
-    model = models.Question
+    model = Question
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
@@ -118,11 +119,11 @@ class DeleteQuestionView(generic.edit.DeleteView):
             self.get_object().answers.all().delete()
             return super(DeleteQuestionView, self).post(request, *args, **kwargs)
 
-class EditAnswerView(generic.edit.UpdateView):
+class EditAnswerView(UpdateView):
     template_name = 'modify/edit_answer.html'
-    form_class = forms.EditAnswerForm
+    form_class = fr.EditAnswerForm
     success_url = '/'
-    model = models.Answer
+    model = Answer
 
     def form_valid(self, form):
         form.save()
@@ -136,9 +137,9 @@ class EditAnswerView(generic.edit.UpdateView):
 
         return context
 
-class DeleteAnswerView(generic.edit.DeleteView):
+class DeleteAnswerView(DeleteView):
     template_name = 'modify/delete_answer.html'
-    model = models.Answer
+    model = Answer
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
@@ -150,9 +151,9 @@ class DeleteAnswerView(generic.edit.DeleteView):
             self.get_object().votes.all().delete()
             return super(DeleteAnswerView, self).post(request, *args, **kwargs)
 
-class RegisterView(generic.edit.FormView):
+class RegisterView(FormView):
     template_name = 'auth/register.html'
-    form_class = forms.RegisterForm
+    form_class = fr.RegisterForm
     success_url = '/'
 
     def form_valid(self, form):
