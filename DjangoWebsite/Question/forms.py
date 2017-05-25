@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django import forms
 from Question import models
 
-class NewQuestionForm(forms.ModelForm):
+class NewQuestion(forms.ModelForm):
     author = forms.CharField(
         label = "Author",
         widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'author'}),
@@ -28,7 +28,7 @@ class NewQuestionForm(forms.ModelForm):
         model = models.Question
         fields = ('title', 'content', 'categories')
 
-class EditAnswerForm(forms.ModelForm):
+class EditAnswer(forms.ModelForm):
     author = forms.CharField(
         label = "Author",
         widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'author'}),
@@ -43,7 +43,7 @@ class EditAnswerForm(forms.ModelForm):
         model = models.Answer
         fields = ('content',)
 
-class LoginForm(AuthenticationForm):
+class Login(AuthenticationForm):
     username = forms.CharField(
         label = "Username",
         widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'})
@@ -53,7 +53,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'})
     )
 
-class RegisterForm(UserCreationForm):
+class Register(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     username = forms.CharField(
         label = "Username",

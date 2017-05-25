@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block CSS %}
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
     <link rel="stylesheet" href="{% static 'css/edit.css' %}">
 {% endblock %}
 
 {% block content %}
     <div id="question">
-        <div class ="title">{{ question.title }}</div>
+        <div id="title">{{ question.title }}</div>
         <table>
             <tr>
                 <td class="votes"> {{ question.getRating }} </td>
@@ -33,9 +34,7 @@
         {% if user == answer.author or user.is_staff and perms.question.can_change_question %}
             <div id="editAnswer">
                 {% if form.errors %}
-                    <div class="Error">
-                        {{ form.errors }}
-                    </div>
+                    <div class="Error"> {{ form.errors }} </div>
                 {% endif %}
                 <form method="post">
                     {% csrf_token %}

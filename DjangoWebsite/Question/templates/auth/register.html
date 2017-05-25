@@ -15,20 +15,7 @@
             <h3> Register </h3>
             {% if form.errors %}
                 <div class="Error">
-                    {% for error in form.errors %}
-                        {% if error = 'username' %}
-                            <p>Wrong username or username already exists.</p>
-                        {% endif %}
-                        {% if error = 'password1' %}
-                            <p>Incorrect password.</p>
-                        {% endif %}
-                        {% if error = 'password2' %}
-                            <p>Second password incorrect.</p>
-                        {% endif %}
-                        {% if error = 'email' %}
-                            <p>Incorrect e-mail.</p>
-                        {% endif %}
-                    {% endfor %}
+                    {{ form.errors }}
                 </div>
             {% endif %}
             <form method="post">

@@ -58,11 +58,6 @@
     <div id="answers">
         {% for ans in question.answers.all %}
             <table>
-                {% if ans.getRating <= -5 %}
-                <tr class="lowVote">
-                {% else %}
-                
-                {% endif %}
                 <tr id="{{ forloop.counter }}">
                     {% if ans.getRating <= -5 %}
                         <td class="votes lowVote">
