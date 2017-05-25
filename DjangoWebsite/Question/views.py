@@ -127,6 +127,13 @@ class DeleteQuestionView(generic.edit.DeleteView):
         if 'cancel' in request.POST:
             return redirect('question', pk=kwargs['pk'])
         else:
+            self.get_object().views.all().delete()
+            self.get_object().votes.all().delete()
+
+            for answ in self.get_object().answers.all():
+                answ.votes.all().delete()
+
+            self.get_object().answers.all().delete()
             return super(DeleteQuestionView, self).post(request, *args, **kwargs)
 
 class DeleteAnswerView(generic.edit.DeleteView):
@@ -140,6 +147,7 @@ class DeleteAnswerView(generic.edit.DeleteView):
             question = self.get_object().question_set.all()[0]
             return redirect('question', pk=question.pk)
         else:
+            self.get_object().votes.all().delete()
             return super(DeleteAnswerView, self).post(request, *args, **kwargs)
 
 class RegisterView(generic.edit.FormView):
