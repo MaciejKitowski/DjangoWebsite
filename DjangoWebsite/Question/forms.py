@@ -28,6 +28,21 @@ class NewQuestionForm(forms.ModelForm):
         model = models.Question
         fields = ('title', 'content', 'categories')
 
+class EditAnswerForm(forms.ModelForm):
+    author = forms.CharField(
+        label = "Author",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'author'}),
+        required = False
+    )
+    content = forms.CharField(
+        label = "Content",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'name': 'content', 'rows':'2'})
+    )
+
+    class Meta:
+        model = models.Answer
+        fields = ('content',)
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label = "Username",

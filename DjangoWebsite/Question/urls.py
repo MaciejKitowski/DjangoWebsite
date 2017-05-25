@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^categories/(?P<page>[\d]*)', views.CategoriesView.as_view(), name='categories'),
     url(r'^question/(?P<pk>[\d]+)', views.QuestionView.as_view(), name='question'),
     url(r'^question/add', views.NewQuestionView.as_view(), name='newQuestion'),
+    url(r'^edit/answer/(?P<pk>[\d]+)', views.EditAnswerView.as_view(), name='edit_answer'),
     url(r'^login/$', auth_view.login, {'template_name': 'login.html', 'authentication_form': forms.LoginForm}),
     url(r'^logout/$', auth_view.logout, kwargs={'next_page': '/'}),
     url(r'^register/$', views.RegisterView.as_view()),

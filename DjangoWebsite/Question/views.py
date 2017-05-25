@@ -92,6 +92,12 @@ class NewQuestionView(generic.edit.FormView):
         form.save_m2m()
         return super(NewQuestionView, self).form_valid(candidate)
 
+class EditAnswerView(generic.edit.UpdateView):
+    template_name = 'edit_answer.html'
+    form_class = forms.EditAnswerForm
+    success_url = '/'
+    model = models.Answer
+
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
     form_class = forms.RegisterForm
