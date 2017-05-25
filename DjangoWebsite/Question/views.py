@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 
 class IndexView(generic.ListView):
-    template_name = 'index.html'
+    template_name = 'main/index.html'
     context_object_name = 'questions'
     model = models.Question
     paginate_by = 13
@@ -35,13 +35,13 @@ class IndexView(generic.ListView):
         return qr
 
 class CategoriesView(generic.ListView):
-    template_name = 'categories.html'
+    template_name = 'main/categories.html'
     context_object_name = 'categories'
     model = models.Category
     paginate_by = 21
 
 class QuestionView(generic.DetailView):
-    template_name = 'question.html'
+    template_name = 'main/question.html'
     model = models.Question
 
     def getIP(self):
@@ -82,7 +82,7 @@ class QuestionView(generic.DetailView):
         return context
 
 class NewQuestionView(generic.edit.FormView):
-    template_name = 'newQuestion.html'
+    template_name = 'main/newQuestion.html'
     form_class = forms.NewQuestionForm
     success_url = '/'
     
