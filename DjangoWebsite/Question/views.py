@@ -5,6 +5,7 @@ from django.db.models import Count, Sum
 from django.db.models.functions import Coalesce
 from Question import models, forms
 from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 
 class IndexView(generic.ListView):
     template_name = 'index.html'
@@ -97,6 +98,11 @@ class EditAnswerView(generic.edit.UpdateView):
     form_class = forms.EditAnswerForm
     success_url = '/'
     model = models.Answer
+
+    def form_valid(self, form):
+        form.save()
+        question = self.get_object().question_set.all()[0]
+        return redirect('question', pk=question.pk)
 
     def get_context_data(self, **kwargs):
         context = super(EditAnswerView, self).get_context_data(**kwargs)
