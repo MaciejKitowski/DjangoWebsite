@@ -107,10 +107,22 @@ class EditAnswerView(generic.edit.UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EditAnswerView, self).get_context_data(**kwargs)
         question = self.get_object().question_set.all()[0]
-        print question
         context['question'] = question
 
         return context
+
+class DeleteAnswerView(generic.edit.DeleteView):
+    template_name = 'delete_answer.html'
+    success_url = '/'
+    model = models.Answer
+
+    def post(self, request, *args, **kwargs):
+        print request.POST
+        if 'cancel' in request.POST:
+            question = self.get_object().question_set.all()[0]
+            return redirect('question', pk=question.pk)
+        else:
+            return super(DeleteAnswerView, self).post(request, *args, **kwargs)
 
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
