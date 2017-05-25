@@ -117,6 +117,18 @@ class EditQuestionView(generic.edit.UpdateView):
     model = models.Question
     success_url = '/'
 
+class DeleteQuestionView(generic.edit.DeleteView):
+    template_name = 'delete_question.html'
+    model = models.Question
+    success_url = '/'
+
+    def post(self, request, *args, **kwargs):
+        print request.POST
+        if 'cancel' in request.POST:
+            return redirect('question', pk=kwargs['pk'])
+        else:
+            return super(DeleteQuestionView, self).post(request, *args, **kwargs)
+
 class DeleteAnswerView(generic.edit.DeleteView):
     template_name = 'delete_answer.html'
     model = models.Answer
