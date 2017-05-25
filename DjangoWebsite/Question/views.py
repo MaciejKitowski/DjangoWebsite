@@ -93,24 +93,6 @@ class NewQuestionView(generic.edit.FormView):
         form.save_m2m()
         return super(NewQuestionView, self).form_valid(candidate)
 
-class EditAnswerView(generic.edit.UpdateView):
-    template_name = 'modify/edit_answer.html'
-    form_class = forms.EditAnswerForm
-    success_url = '/'
-    model = models.Answer
-
-    def form_valid(self, form):
-        form.save()
-        question = self.get_object().question_set.all()[0]
-        return redirect('question', pk=question.pk)
-
-    def get_context_data(self, **kwargs):
-        context = super(EditAnswerView, self).get_context_data(**kwargs)
-        question = self.get_object().question_set.all()[0]
-        context['question'] = question
-
-        return context
-
 class EditQuestionView(generic.edit.UpdateView):
     template_name = "modify/edit_question.html"
     form_class = forms.NewQuestionForm
@@ -135,6 +117,24 @@ class DeleteQuestionView(generic.edit.DeleteView):
 
             self.get_object().answers.all().delete()
             return super(DeleteQuestionView, self).post(request, *args, **kwargs)
+
+class EditAnswerView(generic.edit.UpdateView):
+    template_name = 'modify/edit_answer.html'
+    form_class = forms.EditAnswerForm
+    success_url = '/'
+    model = models.Answer
+
+    def form_valid(self, form):
+        form.save()
+        question = self.get_object().question_set.all()[0]
+        return redirect('question', pk=question.pk)
+
+    def get_context_data(self, **kwargs):
+        context = super(EditAnswerView, self).get_context_data(**kwargs)
+        question = self.get_object().question_set.all()[0]
+        context['question'] = question
+
+        return context
 
 class DeleteAnswerView(generic.edit.DeleteView):
     template_name = 'modify/delete_answer.html'
