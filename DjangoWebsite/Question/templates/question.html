@@ -15,7 +15,7 @@
         <table>
             <tr>
                 <td class="votes">
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and user != question.author %}
                         <form method="post" action="">
                             {% csrf_token %}
                             <input type="hidden" name="questionVote" value="1">
@@ -23,7 +23,7 @@
                         </form>
                     {% endif %}
                     {{ question.getRating }}
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and user != question.author %}
                         <form method="post" action="">
                             {% csrf_token %}
                             <input type="hidden" name="questionVote" value="-1">
@@ -62,7 +62,7 @@
                     {% else %}
                         <td class="votes">
                     {% endif %}
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user != ans.author %}
                             <form method="post" action="">
                                 {% csrf_token %}
                                 <input type="hidden" name="answerVote" value="1">
@@ -71,7 +71,7 @@
                             </form>
                         {% endif %}
                         {{ ans.getRating }}<br/>
-                        {% if user.is_authenticated %}
+                        {% if user.is_authenticated and user != ans.author %}
                             <form method="post" action="">
                                 {% csrf_token %}
                                 <input type="hidden" name="answerVote" value="-1">
