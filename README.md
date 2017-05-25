@@ -1,4 +1,12 @@
-## Screenshots
+Simple forum written in Python using Django and Bootstrap frameworks.
+
+**Author:** [Maciej Kitowski](https://github.com/MaciejKitowski) <br/>
+**Version:** <br/>
+Bootstrap: *3.3.7* <br/>
+Python: *2.7.12* <br/>
+Django: *1.8.7* <br/>
+JQuery: *3.2.1* <br/>
+# Screenshots
 <div align="center">
         <img width="15%" src="Screenshots/1.png" alt="List screen"></img>
         <img height="0" width="8px">
