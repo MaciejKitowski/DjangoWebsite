@@ -98,6 +98,14 @@ class EditAnswerView(generic.edit.UpdateView):
     success_url = '/'
     model = models.Answer
 
+    def get_context_data(self, **kwargs):
+        context = super(EditAnswerView, self).get_context_data(**kwargs)
+        question = self.get_object().question_set.all()[0]
+        print question
+        context['question'] = question
+
+        return context
+
 class RegisterView(generic.edit.FormView):
     template_name = 'register.html'
     form_class = forms.RegisterForm
