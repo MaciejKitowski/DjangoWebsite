@@ -1,6 +1,6 @@
-Simple forum written in Python using Django and Bootstrap frameworks.
+Simple forum written in Python using Django and Bootstrap frameworks.<br/>
+**Author:** [Maciej Kitowski](https://github.com/MaciejKitowski) 
 
-**Author:** [Maciej Kitowski](https://github.com/MaciejKitowski) <br/>
 **Version:** <br/>
 Bootstrap: *3.3.7* <br/>
 Python: *2.7.12* <br/>
