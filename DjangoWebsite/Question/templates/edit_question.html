@@ -81,6 +81,7 @@
         {% endif %}
 
         <form method="post" action="">
+            {% csrf_token %}
             <div class="input-group">
                 <div class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></div>
                 {{ form.title }}
