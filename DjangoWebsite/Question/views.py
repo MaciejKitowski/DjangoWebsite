@@ -111,10 +111,16 @@ class EditAnswerView(generic.edit.UpdateView):
 
         return context
 
+class EditQuestionView(generic.edit.UpdateView):
+    template_name = "edit_question.html"
+    form_class = forms.NewQuestionForm
+    model = models.Question
+    success_url = '/'
+
 class DeleteAnswerView(generic.edit.DeleteView):
     template_name = 'delete_answer.html'
-    success_url = '/'
     model = models.Answer
+    success_url = '/'
 
     def post(self, request, *args, **kwargs):
         print request.POST

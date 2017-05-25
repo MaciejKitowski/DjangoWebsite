@@ -38,6 +38,15 @@
                             <a href = "/category/{{ cat }}/1" class = "category">{{ cat }}</a>
                         {% endfor %}
                     </div>
+                    <div class="options">
+                        {% if user == ans.author or user.is_staff and perms.question.can_change_question %}
+                            <a href="{% url 'edit_question' pk=question.pk %}"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                        {% endif %}
+                        <!--<a href="#"><i class="glyphicon glyphicon-exclamation-sign"></i> Report</a>-->
+                        {% if user == ans.author or user.is_staff and perms.question.can_change_question %}
+                            <a href="{% url 'delete_question' pk=question.pk %}"><i class="glyphicon glyphicon-remove"></i> Remove</a>
+                        {% endif %}
+                    </div>
                 </td>
                 <td class="details">
                     <div class="author"> Author: {{ question.author }} </div>
