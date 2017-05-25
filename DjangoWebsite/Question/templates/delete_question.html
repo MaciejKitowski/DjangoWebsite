@@ -78,13 +78,16 @@
                 {{ form.errors }}
             </div>
         {% endif %}
-
-        <form method="post" action="">
-            {% csrf_token %}
-            <div style="padding: 10px; text-align:center;">
-                <button type="cancel" class="btn btn-primary" value="cancel" name="cancel">Cancel</button>
-                <button type="submit" class="btn btn-danger" value="confirm">Confirm</button>
-            </div>
-        </form>
+        {% if user == answer.author or user.is_staff and perms.question.can_change_question %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <div style="padding: 10px; text-align:center;">
+                    <button type="cancel" class="btn btn-primary" value="cancel" name="cancel">Cancel</button>
+                    <button type="submit" class="btn btn-danger" value="confirm">Confirm</button>
+                </div>
+            </form>
+        {% else %}
+            <div class="Error"> You cannot delete this answer </div>
+        {% endif %}
     </div>
 {% endblock %}
